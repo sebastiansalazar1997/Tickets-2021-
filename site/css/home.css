@@ -1,0 +1,328 @@
+.fondoInicio{
+    margin-top: -95px;
+  /*   background-color: rgb(214, 18, 18); */
+    width: 100%;
+    height: 1120px;
+    background-image: url(../IMG/fondoHome.jpg); 
+    background-size: cover;
+    display: flex;
+    
+}
+
+
+
+
+.cajaTicketBus{
+    margin-top: 250PX;
+    
+}
+
+.cajaTicketBus img{
+    width: 70px;
+    opacity: 95%;
+    margin-top: -12px;
+}
+
+.cajaTicketBus h1{
+    font-weight: 700;
+    font-size: 60px;
+}
+
+.lema p{
+    font-size: 30px;
+    /* margin-left: 93px; */
+}
+
+.lema{
+    margin-top: -20px;
+}
+
+.botones a{
+    border-radius: 6px;
+}
+
+.btn-1{
+    padding: 10px 15px;
+    color: white;
+    background-color: #181818;
+    cursor: pointer;
+    
+}
+
+.btn-1:hover{
+    text-decoration: none; 
+    color: white;
+    background-color: #2b2a2a;
+}
+
+.btn-2{
+    color: black;
+    border: 2px solid #181818;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.btn-2:hover{
+    background-color: #181818;
+    text-decoration: none;
+    color:white;
+}
+
+
+/* .col-sm-12{
+    border: 1px solid black;
+    
+}  */ 
+
+.imagen-1{
+    width: 326px;
+    margin-left: 10px;
+    margin-top: 15px;
+
+}
+
+.imagen-2 {
+    width: 350px;
+    height: 223px;
+
+    /* margin-left: 15px; */
+    margin-top: 15px;
+}
+
+
+.imagen-3{
+    width: 350px;
+    height: 232px;
+    
+}
+
+
+
+.row{
+    width: 100%;
+}
+
+/* .container-fluid img{
+transition: 0.5s ease;
+display: inline-block;
+} */
+
+/* .container-fluid img:hover{
+    transform:scale(1.02);
+} */
+
+
+.col-sm-12{
+  /*   border: 1px solid black; */
+    min-height: 518px;
+    min-width: 345px;
+}
+
+
+
+#imagen1{
+    position: relative;
+}
+
+
+#dentroImagen1 .dentroImagen p{
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: wheat;
+    top: 6px;
+    transition: 0.5s ease;
+     opacity: 0;
+    visibility: hidden; 
+    background-color: rgba(0, 0, 0, 0.397);
+    padding: 10px 0;
+
+    
+}
+
+#img-1:hover > #dentroImagen1  .dentroImagen p{
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+
+.dentroImagen{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    bottom: -12px;
+}
+
+
+/* #img-1:hover > #dentroImagen1 .dentroImagen p{
+    visibility: visible;
+    opacity: 1;
+} */
+
+
+
+body{
+    position: relative;
+}
+
+.posicion{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(3, 3, 3, 0.445);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    transition: 1s ease;
+    display:none;
+}
+
+
+
+.overlay{
+    position: relative;
+    top: 100px;
+    width: 780px;
+    height: 950px;
+    background-color: rgb(228, 227, 227);
+    border-radius: 20px;
+    display: flex;
+    position: fixed;
+    flex-direction: row;
+}
+
+
+
+.contenido h1{
+    text-align: center;
+    position: relative;
+}
+
+
+.contenido{
+    position: relative;
+    top: 35px;
+    /* background-color: coral; */
+    width: 100%;
+    height: 50%;
+}
+
+.contenido img{
+    position: relative;
+    top: 15px;
+    width: 96%;
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contenido p{
+    text-align: justify;
+    margin: 45px 60px;
+}
+
+.cerrar{
+    position: absolute;
+    background:rgb(34, 34, 34);
+    text-align: center;
+    right: 0;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    margin: 12px;
+    color: white;
+    cursor: pointer;
+}
+
+.cerrar:hover{
+    background: #383838;
+}
+.overlay a{
+    color: white;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+}
+
+.overlay a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.lineaNegra{
+    width: 100%;
+    height: 5px;
+    background: rgb(34, 34, 34);
+}
+
+
+/* Nuevo */
+
+.cajaRow{
+    display: flex;
+    flex-direction: row;
+   /*  background: black; */
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+
+.cajaRow img{
+    width: 450px;
+    transition: 0.5s ease;
+    height: 300px;
+
+}
+
+
+.textoImagen:hover > #img1 img{
+    overflow: visible;
+    border-radius: 15px;
+}
+
+#img1{
+    position: relative;
+    margin: 8px;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+
+#img1 .textoImagen h5{
+    color: white;
+    text-align: center;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.575);
+    bottom: -8px;
+    position: absolute;
+    padding: 10px 0;
+    transition: 0.7s ease;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.cajaRow img:hover {
+    transform: scale(1.05);
+}
+
+
+#img1:hover >  .textoImagen h5{
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
