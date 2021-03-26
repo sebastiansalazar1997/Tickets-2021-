@@ -18080,7 +18080,12 @@ html[dir='rtl'] .lg-css3.lg-slide.lg-use-css3 .lg-item.lg-current {
   label:hover ~ label {
 	color: orange;
   }
+
+
   
   input[type="radio"]:checked ~ label {
 	color: orange;}
 
+.pintarEstrellas{
+	color: red;
+}
