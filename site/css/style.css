@@ -105,11 +105,11 @@
 *     6.2 FL Bigmug Line
 **/
 .bg-gradient.bg-secondary-2 {
-	background-image: -moz-linear-gradient(-39deg, #000000 59%, #a4a4a8 100%);
+	background-image: -moz-linear-gradient(-39deg, #000000 59%, #000000 100%);
 	/* FF3.6-15 */
-	background-image: -webkit-linear-gradient(-39deg, #000000 59%, #c8c8c9 100%);
+	background-image: -webkit-linear-gradient(-39deg, #000000 59%, #000000 100%);
 	/* Chrome10-25,Safari5.1-6 */
-	background-image: linear-gradient(135deg, #000000 59%, #c9c9ce 100%);
+	background-image: linear-gradient(135deg, #000000 59%, #000000 100%);
 	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6d0eb1', endColorstr='#080ab4', GradientType=1);
 }
@@ -215,7 +215,7 @@ body {
 	font-weight: 300;
 	font-size: 15px;
 	line-height: 1.6;
-	color: #070707;
+	color: #000000;
 	background-color: #ffffff;
 	-webkit-text-size-adjust: none;
 	-webkit-font-smoothing: subpixel-antialiased;
@@ -291,7 +291,7 @@ h1, h2, h3, h4, h5, h6, [class^='heading-'] {
 	font-family: "Oswald", Helvetica, Arial, sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
-	color: #151515;
+	color: #020202;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, [class^='heading-'] a {
@@ -2851,8 +2851,7 @@ section {
 	top: 0;
 	bottom: 0;
 	right: 0;
-	background: linear-gradient(-39deg, #0a0a0a 0%, rgba(2, 2, 2, 0.938) 100%);
-	opacity: .43;
+	background: rgb(0, 0, 0);
 }
 
 .breadcrumbs-custom-wrap {
@@ -3666,7 +3665,7 @@ section {
 .event-default-wrap .event-default-inner span {
 	margin-top: 0;
 	font-weight: 400;
-	color: #0c0c0c;
+	color: #f7f1f1;
 }
 
 .event-default-inner {
@@ -18045,18 +18044,68 @@ html[dir='rtl'] .lg-css3.lg-slide.lg-use-css3 .lg-item.lg-current {
 * Fonts
 * ==================================================
 */
-
-
-
-
-#form {
-	width: 250px;
-	margin: 0 auto;
-	height: 50px;
-  }
-  
-  #form p {
+.Cooperativas{
+	display: grid;
+	grid-template-columns: 100%;
+	justify-items: center;
+	/* background-color: blue; */
 	text-align: center;
+}
+
+.Cooperativas img{
+	width: 75%;
+
+}
+.Cooperativas > section {
+	width: 900px;
+	/* background-color: red; */
+	padding:15px;
+	margin:20px 0;
+	display: flex;
+}
+
+.Cooperativas1{
+	display: grid;
+	grid-template-columns: 100%;
+	justify-items: center;
+	/* background-color: blue; */
+	text-align: center;
+}
+
+.Cooperativas1 img{
+	width: 75%;
+
+}
+.Cooperativas1 > section {
+	width: 850px;
+	/* background-color: red; */
+	padding:15px;
+	margin:20px 0;
+	display: flex;
+}
+.Cooperativas2{
+	display: grid;
+	grid-template-columns: 100%;
+	justify-items: center;
+	/* background-color: blue; */
+	text-align: center;
+
+}
+
+.Cooperativas2 img{
+	width: 75%;
+
+}
+.Cooperativas2 > section {
+	width: 850px;
+	/* background-color: red; */
+	padding:15px;
+	margin:20px 0;
+	display: flex;
+}
+.breadcrumbs-custom-title{
+	color: #ffffff;
+
   }
   
   #form label {
@@ -18080,7 +18129,12 @@ html[dir='rtl'] .lg-css3.lg-slide.lg-use-css3 .lg-item.lg-current {
   label:hover ~ label {
 	color: orange;
   }
+
+
   
   input[type="radio"]:checked ~ label {
 	color: orange;}
 
+.pintarEstrellas{
+	color: red;
+}
