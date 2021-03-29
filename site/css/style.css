@@ -215,7 +215,7 @@ body {
 	font-weight: 300;
 	font-size: 15px;
 	line-height: 1.6;
-	color: #838386;
+	color: #070707;
 	background-color: #ffffff;
 	-webkit-text-size-adjust: none;
 	-webkit-font-smoothing: subpixel-antialiased;
@@ -2851,7 +2851,7 @@ section {
 	top: 0;
 	bottom: 0;
 	right: 0;
-	background: linear-gradient(-39deg, #101841 0%, rgba(16, 24, 65, 0) 100%);
+	background: linear-gradient(-39deg, #0a0a0a 0%, rgba(2, 2, 2, 0.938) 100%);
 	opacity: .43;
 }
 
@@ -3666,7 +3666,7 @@ section {
 .event-default-wrap .event-default-inner span {
 	margin-top: 0;
 	font-weight: 400;
-	color: #f7f1f1;
+	color: #0c0c0c;
 }
 
 .event-default-inner {
@@ -18045,3 +18045,48 @@ html[dir='rtl'] .lg-css3.lg-slide.lg-use-css3 .lg-item.lg-current {
 * Fonts
 * ==================================================
 */
+
+
+
+
+#form {
+	width: 250px;
+	margin: 0 auto;
+	height: 50px;
+  }
+  
+  #form p {
+	text-align: center;
+  }
+  
+  #form label {
+	font-size: 20px;
+  }
+  
+  input[type="radio"] {
+	display: none;
+  }
+  
+  label {
+	color: grey;
+  }
+  
+  .clasificacion {
+	direction: rtl;
+	unicode-bidi: bidi-override;
+  }
+  
+  label:hover,
+  label:hover ~ label {
+	color: orange;
+  }
+
+
+  
+  input[type="radio"]:checked ~ label {	
+	color: orange;}
+
+.pintarEstrellas > section{
+	color: red;
+	backgr
+}
