@@ -105,11 +105,11 @@
 *     6.2 FL Bigmug Line
 **/
 .bg-gradient.bg-secondary-2 {
-	background-image: -moz-linear-gradient(-39deg, #000000 59%, #000000 100%);
+	background-image: -moz-linear-gradient(-39deg, #000000 59%, #a4a4a8 100%);
 	/* FF3.6-15 */
-	background-image: -webkit-linear-gradient(-39deg, #000000 59%, #000000 100%);
+	background-image: -webkit-linear-gradient(-39deg, #000000 59%, #c8c8c9 100%);
 	/* Chrome10-25,Safari5.1-6 */
-	background-image: linear-gradient(135deg, #000000 59%, #000000 100%);
+	background-image: linear-gradient(135deg, #000000 59%, #c9c9ce 100%);
 	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6d0eb1', endColorstr='#080ab4', GradientType=1);
 }
@@ -291,7 +291,7 @@ h1, h2, h3, h4, h5, h6, [class^='heading-'] {
 	font-family: "Oswald", Helvetica, Arial, sans-serif;
 	font-weight: 400;
 	text-transform: uppercase;
-	color: #020202;
+	color: #151515;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, [class^='heading-'] a {
@@ -18088,5 +18088,22 @@ html[dir='rtl'] .lg-css3.lg-slide.lg-use-css3 .lg-item.lg-current {
 
 .pintarEstrellas > section{
 	color: red;
-	backgr
 }
+
+.centrarTexto{
+	display:flex !important;
+	justify-content: center !important;
+}
+
+.centrarTexto a{
+	text-align: center;
+}
+	
+
+.centarImg img{
+	object-fit: cover;
+	object-position: center;
+	max-width: 80%;
+	max-height: 250px;
+}
+
