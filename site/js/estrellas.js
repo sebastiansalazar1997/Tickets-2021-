@@ -1,4 +1,5 @@
 const clasificacion = document.querySelector(".clasificacion");
+
 clasificacion.addEventListener("click" , x =>{
     if( x.target.id != undefined ){
         let num = x.target.id
@@ -11,6 +12,9 @@ clasificacion.addEventListener("click" , x =>{
         
     }
 })
+
+
+
 class Pintar{
     constructor(){}
 
