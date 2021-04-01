@@ -1,12 +1,25 @@
 const express = require('express');
 const app = express(); 
 const path = require('path'); 
+var bodyParser = require('body-parser');
 
-
-app.use(express.static(path.resolve(__dirname, './public')));
 app.use(require('./routes/index.js'));
-app.set('views', path.resolve(__dirname , 'public/views'));
-app.set('view engine', 'html');
+app.use(express.static(path.resolve(__dirname, './public')));
+app.use(require("../src/routes/index"))
+
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(bodyParser.json());
+
+// app.get("/test" , ( req , res ) => {
+  // res.render("contacts.html")
+  // res.sendFile('test.html', {root : __dirname + '/public/views'}); //Cuando no se utliza ningun motor de plantilla lo hacemos asi
+// })
+
+
 
 
 // app.use(express.static(path.join(__dirname, 'public')));
