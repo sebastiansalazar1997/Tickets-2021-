@@ -3665,7 +3665,7 @@ section {
 .event-default-wrap .event-default-inner span {
 	margin-top: 0;
 	font-weight: 400;
-	color: #f7f1f1;
+	color: #000000;
 }
 
 .event-default-inner {
@@ -4515,7 +4515,7 @@ textarea.form-input.form-input-lg {
 
 @media (min-width: 1200px) {
 	.form-request {
-		padding: 40px 35px;
+		padding: 0px 35px;
 	}
 }
 
@@ -14201,7 +14201,7 @@ html.tablet .ui-to-top {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: rgba(0, 0, 0, 0.3);
+	background: rgba(8, 8, 8, 0.3);
 }
 
 @media (min-width: 1200px) {

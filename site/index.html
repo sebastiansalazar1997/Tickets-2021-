@@ -187,22 +187,22 @@
                   <form class="rd-mailform form-fix">
                     <div class="row row-20 row-fix">
                       <div class="col-sm-12 col-lg-6">
-                        <label class="form-label-outside">Lugar de Salida</label>
+                        <label class="form-label-outside">Nombre</label>
                         <div class="form-wrap form-wrap-inline">
-                          <select class="form-input select-filter" data-placeholder="All" data-minimum-results-for-search="Infinity" name="city">
-                            <option value="1">Guayaquil</option>
-                            <option value="2">Quito</option>
-                            <option value="3">Esmeraldas</option>
-                            <option value="4">Mindo</option>
-                            <option value="5">Baños</option>
-                            <option value="6">Parque Naciona Yasuni </option>
+                          <input class="form-input" type="text" name="Nombre" required placeholder="Ingresa tu Nombre">
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-lg-6">
+                        <label class="form-label-outside">Apellido</label>
+                        <div class="form-wrap form-wrap-inline">
+                          <input class="form-input" type="text" name="Apellido" required placeholder="Ingresa tu Apellido">
                           </select>
                         </div>
                       </div>
                       <div class="col-sm-12 col-lg-6">
-                        <label class="form-label-outside">Lugar de llegada</label>
+                        <label class="form-label-outside">Lugar de Salida</label>
                         <div class="form-wrap form-wrap-inline">
-                          <select class="form-input select-filter" data-placeholder="All" data-minimum-results-for-search="Infinity" name="city">
+                          <select class="form-input select-filter" data-placeholder="Ingresa tu Apellido" data-minimum-results-for-search="Infinity" name="city">
                             <option value="1">Quito</option>
                             <option value="2">Guayaquil</option>
                             <option value="3">Esmeraldas</option>
@@ -212,6 +212,20 @@
                           </select>
                         </div>
                       </div>
+                      <div class="col-sm-12 col-lg-6">
+                        <label class="form-label-outside">Lugar de llegada</label>
+                        <div class="form-wrap form-wrap-validation">
+                          <select class="form-input select-filter" data-placeholder="Ingresa tu Apellido" data-minimum-results-for-search="Infinity" name="city">
+                            <option value="1">Baños</option>
+                            <option value="2">Guayaquil</option>
+                            <option value="3">Esmeraldas</option>
+                            <option value="4">Mindo</option>
+                            <option value="5">Quito</option>
+                            <option value="6">Parque Nacional Yasuni </option>
+                          </select>
+                        </div>
+                      </div>
+                          
                       <div class="col-sm-12 col-lg-6">
                         <label class="form-label-outside">Calendario</label>
                         <div class="form-wrap form-wrap-validation">
@@ -225,14 +239,9 @@
                         </div>
                       </div>
                       <div class="col-sm-12 col-lg-6">
-                        <label class="form-label-outside">Dias</label>
-                        <div class="form-wrap form-wrap-validation">
-                          <!-- Select 2-->
-                          <select class="form-input select-filter" data-placeholder="All" data-minimum-results-for-search="Infinity" name="city">
-                            <option value="1">Un dia</option>
-                            <option value="2">2 dias </option>
-                            <option value="3">3 dias </option>
-                            <option value="4">4 dias</option>
+                        <label class="form-label-outside">E-mail</label>
+                        <div class="form-wrap form-wrap-inline">
+                          <input class="form-input" type="email" name="email" required placeholder="Ingresa tu E-mail">
                           </select>
                         </div>
                       </div>
@@ -345,6 +354,54 @@
                 </div>
               </article>
             </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section-variant-1 bg-default novi-background bg-cover centarImg"> 
+        <div class="container container-wide">
+          <div class="row row-fix justify-content-xl-end row-30 text-center text-xl-left">
+            <div class="col-xl-8">
+              <div class="parallax-text-wrap">
+                <h3>Cooperativas</h3>
+              </div>
+              <hr class="divider divider-decorate">
+            </div>
+          </div>
+          <div class="row row-50">
+            <div class="col-md-6 col-xl-4">
+              <article class="event-default-wrap">
+                <div class="event-default">
+                  <figure class="event-default-image"><img src="IMG/bus 2.jpg" alt="" width="570" height="370"/>
+                  </figure>
+                </div>
+                <div class="event-default-inner centrarTexto">
+                  <h5><a class="event-default-title" href="#">Cooperativa Baños</a></h5>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <article class="event-default-wrap">
+                <div class="event-default">
+                  <figure class="event-default-image"><img src="IMG/bus 1.jpg" alt="" width="570" height="370"/>
+                  </figure>
+                </div>
+                <div class="event-default-inner centrarTexto">
+                  <h5><a class="event-default-title" href="#">Cooperativa Ecuador</a></h5>
+                </div>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+              <article class="event-default-wrap">
+                <div class="event-default">
+                  <figure class="event-default-image"><img src="IMG/bus 3.jpg" alt="" width="570" height="370"/>
+                  </figure>
+                </div>
+                <div class="event-default-inner centrarTexto" >
+                    <h5><a class="event-default-title" href="#">Cooperativa Occidental</a></h5>
+                </div>
+              </article>
+            </div>
+            
           </div>
         </div>
       </section>
