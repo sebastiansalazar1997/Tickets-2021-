@@ -3666,11 +3666,7 @@ section {
 .event-default-wrap .event-default-inner span {
 	margin-top: 0;
 	font-weight: 400;
-<<<<<<< HEAD
-	color: #000000;
-=======
 	color: #0c0c0c;
->>>>>>> master
 }
 
 .event-default-inner {
@@ -10158,7 +10154,6 @@ html[class*="ie"] .dtp-hand, html[class*="ie"] .dtp-hour-hand {
 .owl-carousel .owl-stage-outer {
 	position: relative;
 	overflow: hidden;
-	/* fix for flashing background */
 	-webkit-transform: translate3d(0px, 0px, 0px);
 }
 
@@ -14111,20 +14106,6 @@ html.tablet .ui-to-top {
 * Swiper
 * --------------------------------------------------
 */
-.swiper-container {
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
-	overflow: hidden;
-	height: auto;
-	min-height: 45vw;
-	/* Fix of Webkit flickering */
-	z-index: 1;
-}
-
 .swiper-container .button-default-outline, .swiper-container .button-default-outline:focus {
 	color: #ffffff;
 	background-color: transparent;
@@ -18050,9 +18031,6 @@ html[dir='rtl'] .lg-css3.lg-slide.lg-use-css3 .lg-item.lg-current {
 * ==================================================
 */
 
-
-
-
 #form {
 	width: 250px;
 	margin: 0 auto;
@@ -18087,10 +18065,10 @@ html[dir='rtl'] .lg-css3.lg-slide.lg-use-css3 .lg-item.lg-current {
 
 
   
-  input[type="radio"]:checked ~ label {	
-	color: orange;}
+input[type="radio"]:checked ~ label {	
+color: orange;
+}
 
 .pintarEstrellas > section{
 	color: red;
-	backgr
 }

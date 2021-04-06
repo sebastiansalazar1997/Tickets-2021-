@@ -3,8 +3,8 @@ const app = express()
 const path = require('path'); 
 
 
-app.get( "/about-us" , ( req, res ) => {
-    res.sendFile('about-us.html', {root :  path.join(__dirname , '../public/views')}); //Cuando no se utliza ningun motor de plantilla lo hacemos asi
+app.get( "/contacts" , ( req, res ) => {
+    res.render('contacts.html', {root :  path.join(__dirname , '../public/views')}); //Cuando no se utliza ningun motor de plantilla lo hacemos asi
 })
 
 app.post("/contacts" , ( req , res ) => {
