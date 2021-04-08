@@ -1,31 +1,30 @@
 const express = require('express');
 const app = express(); 
 const path = require('path'); 
-var bodyParser = require('body-parser');
+const flash = require("connect-flash");
+const sesion = require("express-session");
+app.use(
+  sesion({
+    secret : 'claveSecretaTickets',
+    resave: false,
+    saveUninitialized: false,
+  })
+)
 
+app.use(flash())
 
-app.use(express.urlencoded({
-  extended: true
-}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+// app.use((req, res, next) => {
+//   console.log(app.locals.willContact = req.flash('willContact')[0]);
+//   next();
+// });
 
 app.use(require('./routes/index.js'));
 app.use(express.static(path.resolve(__dirname, './public')));
-app.set('views', path.resolve(__dirname, 'public/views'));
-// app.set('view engine', 'html');
+// app.use(require("../src/routes/index"));
 
-
-
-// app.get("/test" , ( req , res ) => {
-  // res.render("contacts.html")
-  // res.sendFile('test.html', {root : __dirname + '/public/views'}); //Cuando no se utliza ningun motor de plantilla lo hacemos asi
-// })
-
-
-
-
-// app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(3000, () => {
     console.log('Puerto conectado en ', 3000);

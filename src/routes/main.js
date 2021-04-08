@@ -2,6 +2,7 @@ const express = require('express');
 const app = express()
 const path = require('path'); 
 const Router = express.Router()
+const { regitrarUsuarios } = require("../database")
 app.set('views', path.resolve(__dirname, '../public/views'));
 
 
