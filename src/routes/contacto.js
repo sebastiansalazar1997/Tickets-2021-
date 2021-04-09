@@ -14,6 +14,7 @@ app.post("/contacts" , async( req , res ) => {
     // console.log(JSON.parse(body));
     console.log(body);
     // res.send("Vamos bien")
+    //Expreciones regulares.
     let nameOk = /^\w{3,15}\s?(\w{3,15})?$/.test(body.name);
     let lastNameOk = /^\w{3,15}\s?(\w{3,15})?$/.test(body.last_name);
     let emailOk = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/g.test(body.email);
@@ -22,7 +23,8 @@ app.post("/contacts" , async( req , res ) => {
 
     
     if( body.name == '' || body.last_name == '' ||  body.email == '' || body.phone == ''  || body.message == ''){
-        res.send("LLena todos los campos plss")
+        res.send({ msg : "LLena todos los campos" , err : true })
+
     }else if(nameOk && lastNameOk && emailOk && phoneOk && messageOk){
 
             /* AQUI ES EN DONDE LOS DATOS YA ESTAN VALIDADOS, ENTONCES TENEMOS QUE GUARDARLOS */
@@ -33,8 +35,8 @@ app.post("/contacts" , async( req , res ) => {
                 apellidos : body.last_name,
                 message : body.message
             }
-            console.log("Reserva creada con exito");
-            res.send("You got it")
+            console.log("Good");
+            res.send({ msg : "Tu mensaje a sido enviado correctamente" , err : false })
             // regitrarFormulario( datos )
             // res.redirect("back")
             // req.flash("willContact" , "esto es una peurbea")
@@ -45,8 +47,8 @@ app.post("/contacts" , async( req , res ) => {
             /* AQUI ES EN DONDE CREAREMOS EL ERROR EN CASO LAS VALIDACIONES NO SEAN VERDADERAS */
             // req.flash("errContact" , "Este es un ejemplo")
             // res.send("You got it")
-            console.log("Oops!, a surgido un error, por favor intentalo mas tarde");
-            res.send("Asegurate de llenar llenar bien los campos")
+            // console.log("Oops!, a surgido un error, por favor intentalo mas tarde");
+            res.send({ msg : "Asegurate de llenar llenar bien los campos" , err : true })
 
     }
     

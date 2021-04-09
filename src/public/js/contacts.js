@@ -16,8 +16,14 @@ submit.addEventListener("click" , () => {
     })
     .then( res => res.text() )  //Aqui es en dodne rescibimos la informacion si vamos arecibir ifnromacion en forma de json, cambiamos text por json
     .then( data => {
-        // $htmlAlert.innerHTML = `<div class="alert alert-primary" role="alert">${ data }</div>`
-        alert(data)
+        let resDB = JSON.parse(data);
+
+        if (resDB.err) {
+            $htmlAlert.innerHTML = `<div class="alert alert-danger" role="alert">${ resDB.msg }</div>`
+        }else{
+            $htmlAlert.innerHTML = `<div class="alert alert-primary" role="alert">${ resDB.msg }</div>`
+        }
+        // alert(data)
     } )
     //mostrar mensaje de error o exito
     //actulizar los datos

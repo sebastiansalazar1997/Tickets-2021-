@@ -209,12 +209,12 @@
             <div class="form-request form-request-modern bg-gray-lighter novi-background">
               <h4>Reserva tu viaje ahora ♥ </h4>
               <!-- RD Mailform-->
-              <form class="rd-mailform form-fix" method="POST">
+              <form class="rd-mailform form-fix" id="formularioReserva"  method="POST">
                 <div class="row row-20 row-fix">
                   <div class="col-sm-12 col-lg-6">
                     <label class="form-label-outside">Nombre</label>
                     <div class="form-wrap form-wrap-inline">
-                      <input class="form-input" type="text" name="Nombre" placeholder="Ingresa tu Nombre" required>
+                      <input class="form-input" type="text" id="nombre" name="Nombre" placeholder="Ingresa tu Nombre" required>
                     </div>
                   </div>
                   <div class="col-sm-12 col-lg-6">
@@ -227,7 +227,7 @@
                   <div class="col-sm-12 col-lg-6">
                     <label class="form-label-outside">Cedula</label>
                     <div class="form-wrap form-wrap-inline">
-                      <input class="form-input" type="text" name="Cedula" placeholder="Ingresa tu Cedula" required>
+                      <input class="form-input" type="text" name="cedula" placeholder="Ingresa tu Cedula" required>
                     </div>
                   </div>
                   <div class="col-sm-12 col-lg-6">
@@ -237,30 +237,41 @@
                     </div>
                   </div>
                   <div class="col-sm-12 col-lg-6">
-                    <label class="form-label-outside">Lugar de Salida</label>
+                    <label class="form-label-outside">Seleccione su Cooperativa</label>
+                    <div class="form-wrap form-wrap-inline">
+                      <select class="form-input select-filter" data-placeholder="Cooperativa "
+                        data-minimum-results-for-search="Infinity" name="cooperativa" required>
+                        <option value="trans_ecuador">Trans Ecuador</option>
+                        <option value="occidental">Occidental</option>
+                        <option value="banios">Baños</option>
+                        </select>
+                    </div>
+                  </div>
+                                   
+                  <div class="col-sm-12 col-lg-6">
+                    <label class="form-label-outside">Lugar de Partida</label>
                     <div class="form-wrap form-wrap-inline">
                       <select class="form-input select-filter" data-placeholder="Lugar de salida "
-                        data-minimum-results-for-search="Infinity" name="city" required>
-                        <option value="1">Quito</option>
-                        <option value="2">Guayaquil</option>
-                        <option value="3">Esmeraldas</option>
-                        <option value="4">Mindo</option>
-                        <option value="5">Baños</option>
-                        <option value="6">Parque Nacional Yasuni </option>
+                        data-minimum-results-for-search="Infinity" name="partida" required>
+                        <option value="Quito">Quito</option>
+                        <option value="Guayaquil">Guayaquil</option>
+                        <option value="Esmeraldas"></option>
+                        <option value="Mindo">Mindo</option>
+                        <option value="Banios">Baños</option>
+                        
                       </select>
                     </div>
                   </div>
                   <div class="col-sm-12 col-lg-6">
-                    <label class="form-label-outside">Lugar de llegada</label>
+                    <label class="form-label-outside">Lugar de destino</label>
                     <div class="form-wrap form-wrap-validation">
                       <select class="form-input select-filter" data-placeholder="Lugar de llegada"
-                        data-minimum-results-for-search="Infinity" name="city" required>
-                        <option value="1">Baños</option>
-                        <option value="2">Guayaquil</option>
-                        <option value="3">Esmeraldas</option>
-                        <option value="4">Mindo</option>
-                        <option value="5">Quito</option>
-                        <option value="6">Parque Nacional Yasuni </option>
+                        data-minimum-results-for-search="Infinity" name="destino" required>
+                        <option value="Ambato">Ambato</option>
+                        <option value="guayaquil">Guayaquil</option>
+                        <option value="esmeraldas">Esmeraldas</option>
+                        <option value="mindo">Mindo</option>
+                        <option value="quito">Quito</option>
                       </select>
                     </div>
                   </div>
@@ -269,7 +280,7 @@
                     <label class="form-label-outside">Calendario</label>
                     <div class="form-wrap form-wrap-validation">
                       <!-- Select -->
-                      <input class="form-input" id="dateForm" name="date" type="text" data-time-picker="date">
+                      <input class="form-input" id="dateForm" name="fecha" type="text" data-time-picker="date">
                       <label class="form-label" for="dateForm">Selecciona la fecha</label>
                       <!--select.form-input.select-filter(data-placeholder="All", data-minimum-results-for-search="Infinity",  name='city')-->
                       <!--  option(value="1") Choose the date-->
@@ -280,7 +291,7 @@
                   <div class="col-sm-12 col-lg-6">
                     <label class="form-label-outside">Hora</label>
                     <div class="form-wrap form-wrap-validation">
-                      <input class="form-input" id="timeForm" name="time" type="text" data-time-picker="time">
+                      <input class="form-input" id="timeForm" name="tiempo" type="text" data-time-picker="time">
                       <label class="form-label " for="timeForm">Selecciona la hora</label>
                       </select>
                     </div>
@@ -288,20 +299,22 @@
                   <div class="col-lg-6">
                     <label class="form-label-outside">Adultos</label>
                     <div class="form-wrap form-wrap-modern">
-                      <input class="form-input input-append" id="form-element-stepper" type="number" min="0" max="300"
-                        value="2">
+                      <input class="form-input input-append"  name= "adultos" id="form-element-stepper" type="number" min="0" max="1">
                     </div>
                   </div>
+                  
                   <div class="col-lg-6">
-                    <label class="form-label-outside">Niños</label>
+                    
+                    <label class="form-label-outside">Niños / Tercera edad</label>
                     <div class="form-wrap form-wrap-modern">
-                      <input class="form-input input-append" id="form-element-stepper-1" type="number" min="0" max="300"
-                        value="0">
+                      <input class="form-input input-append" name= "ninios" id="form-element-stepper-1" type="number" min="0" max="10">
+
                     </div>
                   </div>
                 </div>
                 <div class="form-wrap form-button">
                   <button class="button button-block button-secondary" type="submit">Reservar</button>
+                  
                 </div>
               </form>
             </div>
@@ -668,6 +681,7 @@
   <!-- Javascript-->
   <script src="js/core.min.js"></script>
   <script src="js/script.js"></script>
+  <script src="./js/main.js"></script>
   <!-- <script src="js/estrellas.js"></script> -->
 
 </body>

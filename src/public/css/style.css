@@ -18072,3 +18072,14 @@ color: orange;
 .pintarEstrellas > section{
 	color: red;
 }
+
+
+.alertasPost {
+	text-align: center;
+	min-width: 400px;
+	position: fixed;
+	top: 10%;
+	left: 50%;
+	z-index: 1000;
+	margin: auto;
+}
