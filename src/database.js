@@ -4,7 +4,7 @@ const pool = new Pool({
   user : 'postgres',
   host : 'localhost',
   password : 'LadesiempreSQL',
-  database : 'tickets'
+  database : 'TICKETS 2.1 2021'
 });
 
 let regitrarFormulario = async ( data ) => {
@@ -19,22 +19,39 @@ let regitrarFormulario = async ( data ) => {
 //  vamos a enviar los datos a la base de datos
 
 let registrarReserva = async ( persona ) => {
-    let texto = "INSERT INTO reservas( cedula , nombre , apellido, email, adultos, ninios, cooperativa, llegada, tiempo, fecha, salida ) VALUES( $1 , $2 , $3, $4, $5, $6, $7, $8, $9, $10, $11 )";
+    let texto = "INSERT INTO cliente( cedula , nombre , apellido, correo ) VALUES( $1 , $2 , $3, $4)";
+    let textoReserva = "INSERT INTO reserva( fecha , estado , id_bus , nro_niños , nro_adultos , id_destino , lugar_salida , hora ) VALUES( $1 , $2 , $3, $4 , $5 , $6 , $7 , $8)";
+
     let datos = [ 
       persona.cedula, 
       persona.nombre, 
       persona.apellido, 
       persona.email, 
-      persona.adultos, 
-      persona.ninios, 
-      persona.cooperativa, 
-      persona.llegada, 
-      persona.tiempo,
+    ]
+     
+    let bus = 1;
+    let destino = 1;
+    let estado = true;
+    
+    console.log(persona.tiempo);
+    
+    let datosReserva = [
       persona.fecha,
+      estado,
+      bus,
+      persona.ninios, 
+      persona.adultos, 
+      destino,
       persona.salida,
+      persona.tiempo,
+      // persona.cooperativa, 
+      // persona.llegada, 
     ]
 
-    console.log(datos);
+
+    let guardarDos = await pool.query( textoReserva , datosReserva )
+    let guardar = await pool.query( texto , datos )
+    console.log(guardar.rows);
 };
 
 // let regitrarUsuarios = () => {
