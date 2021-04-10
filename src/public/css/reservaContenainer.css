@@ -1,0 +1,17 @@
+:root {
+    --negro : rgb(12, 12, 12);
+    --rojo : red;
+}
+
+._reservaMainContainer {
+    /* width: 100%; */
+    display: grid;
+    grid-template-columns: repeat( 2 , minmax( min-content , 1fr ) );
+    min-height: 650px;
+    background-color: var(--negro);
+    gap: 1em;
+}
+
+._reservaMainContainer  > div{
+    background-color: yellow;
+}
