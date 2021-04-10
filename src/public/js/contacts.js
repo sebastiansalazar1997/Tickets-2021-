@@ -24,7 +24,7 @@ submit.addEventListener("click" , () => {
             $htmlAlert.innerHTML = `<div class="alert alert-primary" role="alert">${ resDB.msg }</div>`
         }
         // alert(data)
-    } )
+    });
     //mostrar mensaje de error o exito
     //actulizar los datos
 });

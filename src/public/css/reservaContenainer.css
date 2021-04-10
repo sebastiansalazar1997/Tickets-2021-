@@ -1,17 +1,137 @@
 :root {
     --negro : rgb(12, 12, 12);
-    --rojo : red;
+    --blanco : rgb(243, 240, 240);
 }
 
+/* =================CONTENEDOR DE RESERVA ================== */
 ._reservaMainContainer {
-    /* width: 100%; */
     display: grid;
     grid-template-columns: repeat( 2 , minmax( min-content , 1fr ) );
     min-height: 650px;
     background-color: var(--negro);
     gap: 1em;
+    color: white;
+    padding: 40px 0;
 }
 
-._reservaMainContainer  > div{
-    background-color: yellow;
+.infoReserva {
+    margin: auto 0 auto 150px;
+    max-width: 750px;
 }
+
+.infoReserva > div{
+    margin-top: 30px;
+}
+
+.infoReserva div:nth-child(1) h1{
+    font-size: 45px !important;
+    color: white;
+    line-height: 55px;
+}
+/* ================= *FIN CONTENEDOR DE RESERVA ================== */
+
+/* ================= RESERVA ================== */
+
+._reservaInputs {
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+._formGrid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--blanco);
+    /* padding: 30px; */
+    max-width: min-content;
+    border-radius: 10px;
+}
+
+._formGrid > div {
+    margin-top: 25px;
+}
+
+._formGridSelect {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap :10px;
+    padding: 30px;
+}
+.span3{
+    grid-column: span 2;
+}
+
+._formGridSelect select{
+    width: 100%;
+}
+
+
+._formGrid label{
+    font-size: 13px;
+    color: rgb(141, 141, 141);
+}
+
+
+
+._formGrid input{
+    height:25px;
+    border: none;
+    border-bottom: 2px solid rgb(139, 139, 139);
+    background: none;
+    color: rgb(139, 139, 139);
+}
+
+
+._datosReservaUser {
+    display: grid;
+    /* border-radius: 10px; */
+    padding: 15px 15px 30px 15px;
+    background-color: var(--negro);
+    grid-template-columns: repeat( 2 , 1fr);
+    gap: 10px;
+}
+
+
+
+._formGrid button{
+    border: none;
+    background-color: rgb(32, 32, 32);
+    border-radius: 5px;
+    padding: 5px 25px;
+    color: white;
+}
+
+.btn_Reservar{
+    display: flex;
+    justify-content: center;
+    padding: 0 0 15px 0;
+}
+
+
+._formGrid select{
+    border: 0;
+    height: 40px;
+    padding: 5px 10px;
+    color: rgb(80, 80, 80);
+    border-bottom: 2px solid rgb(139, 139, 139);
+    background: none;
+    font-size: 15px;
+}
+
+
+._formGrid label:hover {
+    color: white;
+}
+
+
+._formGrid input:focus {
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+
+/* =================*FIN RESERVA ================== */
+
+

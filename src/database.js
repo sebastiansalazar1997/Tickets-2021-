@@ -1,3 +1,4 @@
+const { response } = require("express");
 const { Pool } = require("pg");
 
 const pool = new Pool({
@@ -54,15 +55,30 @@ let registrarReserva = async ( persona ) => {
     console.log(guardar.rows);
 };
 
-// let regitrarUsuarios = () => {
-//     let texto = " INSERT INTO reservas( cedula , nombre , apellido ) VALUES( $1 , $2 , $3 )";
-//     let datos = [ data.phone , data.nombres , data.apellidos , data.message , data.email ];
-//     let guardar = await pool.query( texto , datos);
-//     console.log(guardar);
-// }
-
+getTerminales = async() => {
+  try{
+    let texto = "SELECT * FROM terminal";
+    let terminales = await pool.query(texto)
+    return terminales.rows;
+  }catch(e){
+    return "Oops, a ocurrido un error"
+  }
+}
+ 
+getCooperativas = async(id) =>{
+  try{
+    let texto = "SELECT * FROM cooperativa where fk_terminal = $1";
+    let datos = [ id ]
+    let cooperativas = await pool.query(texto , datos )
+    return cooperativas.rows;
+  }catch(e){
+    return "Oops, a ocurrido un error"
+  }
+}
 
 module.exports = {
     regitrarFormulario,
-    registrarReserva
+    registrarReserva,
+    getTerminales,
+    getCooperativas
 }
