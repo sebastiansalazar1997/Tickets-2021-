@@ -4,8 +4,9 @@ const app = express()
 const path = require('path'); 
 
 
-app.use(require('./main.js'))
-app.use(require('./contacto.js'))
+app.use(require('./main.js'));
+app.use(require('./contacto.js'));
+app.use(require('./admin.js'));
 
 app.get( "/about-us" , ( req, res ) => {
   res.sendFile('about-us.html', {root :  path.join(__dirname , '../public/views')}); //Cuando no se utliza ningun motor de plantilla lo hacemos asi

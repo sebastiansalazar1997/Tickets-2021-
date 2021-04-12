@@ -76,9 +76,24 @@ getCooperativas = async(id) =>{
   }
 }
 
+getDestinos = async( id ) => {
+
+  try{
+    let texto = "SELECT * FROM destino where fk_cooperativa = $1";
+    let datos = [ id ]
+    let cooperativas = await pool.query(texto , datos )
+    return cooperativas.rows;
+  }catch(e){
+    return "Oops, a ocurrido un error"
+  }
+
+  
+}
+
 module.exports = {
     regitrarFormulario,
     registrarReserva,
     getTerminales,
-    getCooperativas
+    getCooperativas,
+    getDestinos
 }

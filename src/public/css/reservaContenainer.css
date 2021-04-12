@@ -33,7 +33,6 @@
 /* ================= RESERVA ================== */
 
 ._reservaInputs {
-    /* background-color: yellow; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,13 +44,10 @@
     justify-content: center;
     background-color: var(--blanco);
     /* padding: 30px; */
-    max-width: min-content;
+    width: 600px;
     border-radius: 10px;
 }
 
-._formGrid > div {
-    margin-top: 25px;
-}
 
 ._formGridSelect {
     display: grid;
@@ -77,6 +73,7 @@
 
 ._formGrid input{
     height:25px;
+    width: 100%;
     border: none;
     border-bottom: 2px solid rgb(139, 139, 139);
     background: none;
@@ -106,7 +103,7 @@
 .btn_Reservar{
     display: flex;
     justify-content: center;
-    padding: 0 0 15px 0;
+    padding: 15px 0 15px 0;
 }
 
 
@@ -120,10 +117,6 @@
     font-size: 15px;
 }
 
-
-._formGrid label:hover {
-    color: white;
-}
 
 
 ._formGrid input:focus {

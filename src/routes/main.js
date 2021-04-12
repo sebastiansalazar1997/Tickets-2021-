@@ -2,7 +2,7 @@ const express = require('express');
 const app = express()
 const path = require('path'); 
 const Router = express.Router()
-const { registrarReserva , getTerminales , getCooperativas } = require("../database")
+const { registrarReserva , getTerminales , getCooperativas , getDestinos } = require("../database")
 app.set('views', path.resolve(__dirname, '../public/views'));
 
 // aqui se hace el metodo get traemos los datos desde la base
@@ -13,18 +13,74 @@ app.get( "/" , ( req, res ) => {
 
 app.post( "/" , ( req, res ) => {
   /* ===== MOSTRAR LOS TERMINALES REGISTRADOS EN LA DB AL USUARIO ===== */
-  if( req.body.terminalSelect ){ //Con este "if" simplemente validamos si el post es ejecutando cuando eligue un terminal 
-    // console.log(req.body);
-    getTerminales().then( x => {
-      res.json(x)
-    });
+  if ( req.body.TEST === true ) {
 
-  }else if( req.body.id ){
-    let eje = getCooperativas( req.body.id )
-    .then( x => {
-      res.json(x)
-    });
+    if( req.body.terminalSelect ){ //Con este "if" simplemente validamos si el post es ejecutando cuando eligue un terminal 
+      // console.log(req.body);
+      getTerminales().then( x => {
+        res.json(x)
+      });
+
+    }else if( req.body.idCooperativa ){
+      getCooperativas( req.body.idCooperativa )
+      .then( x => {
+        res.json(x)
+      });
+    }else if( req.body.id_cooperativa ){
+      getDestinos( req.body.id_cooperativa)
+      .then ( x => {
+        res.json(x);
+      })
+    }
+
+  }else {
+
+    
+    
+  const { terminalReserva , cooperativaReserva , destinoReserva , horaReserva , fechaReserva  , adultosReserva , niniosReserva , nombreReserva , apellidoReserva , cedulaReserva , emailReserva } = req.body;
+
+  if ( nombreReserva && apellidoReserva && cedulaReserva , emailReserva  ) {
+    
+   let nombreok = /^\w{3,15}\s?(\w{3,15})?$/.test( nombreReserva );
+   let apellidook =/^\w{3,15}\s?(\w{3,15})?$/.test( apellidoReserva  );
+   let emailOk = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test( emailReserva );
+   let cedulaok = /^[0-9]{10}$/.test( cedulaReserva )
+   let adultosok = /^[1-9]{1,9}$/.test( adultosReserva );
+   let niniosok = /^[1-9]{1,9}$/.test( niniosReserva );
+    
+    let newDatosReserva = {
+      terminalReserva,
+      cooperativaReserva,
+      destinoReserva,
+      horaReserva,
+      fechaReserva,
+      adultosReserva,
+      niniosReserva
+    }
+    
+    let newDatosUserReserva = {
+      nombreReserva,
+      apellidoReserva,
+      cedulaReserva,
+      emailReserva
+    }
+  //  console.log( req.body );
+    
+    if (nombreok , apellidook , emailOk , cedulaok , adultosok , niniosok){
+
+      //Guardar en DB
+      
+    }
+   
+  }else {
+    console.log("LLena todos los campos")
   }
+
+    
+  }
+  
+  
+  
   
   
   
