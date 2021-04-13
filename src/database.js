@@ -12,7 +12,6 @@ let regitrarFormulario = async ( data ) => {
     let texto = " INSERT INTO reservas( cedula , nombre , apellido ) VALUES( $1 , $2 , $3 )";
     let datos = [ data.phone , data.nombres , data.apellidos , data.message , data.email ];
     let guardar = await pool.query( texto , datos);
-    console.log(guardar);
 }
 
 
@@ -22,7 +21,10 @@ let regitrarFormulario = async ( data ) => {
 let registrarReserva = async ( persona ) => {
     let texto = "INSERT INTO cliente( cedula , nombre , apellido, correo ) VALUES( $1 , $2 , $3, $4)";
     let textoReserva = "INSERT INTO reserva( fecha , estado , id_bus , nro_niños , nro_adultos , id_destino , lugar_salida , hora ) VALUES( $1 , $2 , $3, $4 , $5 , $6 , $7 , $8)";
+    let detalle_reserva = "INSERT INTO detalle_reserva( id_reserva , id_asiento , cedula_cliente )values ( $1 , $2 , $3 ) "
 
+    let texto_detalle_reserva = [  "id_reserva?" , "asiento" , datos.cedula   ]
+    
     let datos = [ 
       persona.cedula, 
       persona.nombre, 
@@ -81,19 +83,46 @@ getDestinos = async( id ) => {
   try{
     let texto = "SELECT * FROM destino where fk_cooperativa = $1";
     let datos = [ id ]
-    let cooperativas = await pool.query(texto , datos )
-    return cooperativas.rows;
+    let destinos = await pool.query(texto , datos )
+    return destinos.rows;
   }catch(e){
     return "Oops, a ocurrido un error"
   }
-
   
 }
+
+    getHorarios = async( id ) => {
+      try{
+        let texto = "SELECT * FROM horario where fk_destino = $1";
+        let datos = [ id ]
+        let horarios = await pool.query(texto , datos )
+        return horarios.rows;
+      }catch(e){
+        return "Oops, a ocurrido un error"
+      }
+
+    }
+
+  getBuses = async( id )=> {
+
+    try{
+      let texto = "SELECT * FROM bus where fk_destino = $1";
+      let datos = [ id ]
+      let buses = await pool.query(texto , datos )
+      return buses.rows;
+    }catch(e){
+      return "Oops, a ocurrido un error"
+    }
+    
+  }
+
 
 module.exports = {
     regitrarFormulario,
     registrarReserva,
     getTerminales,
     getCooperativas,
-    getDestinos
+    getDestinos,
+    getHorarios,
+    getBuses
 }

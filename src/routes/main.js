@@ -2,7 +2,7 @@ const express = require('express');
 const app = express()
 const path = require('path'); 
 const Router = express.Router()
-const { registrarReserva , getTerminales , getCooperativas , getDestinos } = require("../database")
+const { registrarReserva , getTerminales , getCooperativas , getDestinos , getBuses , getHorarios } = require("../database")
 app.set('views', path.resolve(__dirname, '../public/views'));
 
 // aqui se hace el metodo get traemos los datos desde la base
@@ -31,6 +31,17 @@ app.post( "/" , ( req, res ) => {
       .then ( x => {
         res.json(x);
       })
+    }else if( req.body.id_destino ){
+      getHorarios( req.body.id_destino  )
+      .then( x => {
+        res.json(x)
+      });
+
+    }else if( req.body.id_bus ){
+      getBuses( req.body.id_bus )
+      .then( x => {
+        res.json(x)
+      })
     }
 
   }else {
@@ -47,7 +58,11 @@ app.post( "/" , ( req, res ) => {
    let cedulaok = /^[0-9]{10}$/.test( cedulaReserva )
    let adultosok = /^[1-9]{1,9}$/.test( adultosReserva );
    let niniosok = /^[1-9]{1,9}$/.test( niniosReserva );
-    
+   let id_reserva = math.floor(math.random() * 5000  )
+
+   
+   
+  
     let newDatosReserva = {
       terminalReserva,
       cooperativaReserva,

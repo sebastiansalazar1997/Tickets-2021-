@@ -1,7 +1,8 @@
 let $terminal = document.querySelector("#terminalReserva");
 let $cooperativa = document.querySelector("#cooperativaReserva");
 let $destino = document.querySelector("#destinoReserva");
-
+let $horaReserva = document.querySelector("#horaReserva");
+let $buses = document.querySelector("#buses");
 class getSelect {
     constructor(){}
 
@@ -59,24 +60,71 @@ class getSelect {
         });
     };
 
+
     imprimirDestinos = ( data ) =>{
         this.limpiarSelectDestino()
         for( let i = 0; i < data.length ; i++ ){
             $destino.innerHTML += `<option value="${data[i].id_destino}">${data[i].nombre}</option>`
         }
+
+        this.horarios( $destino.value  )
+    }
+
+
+    horarios = ( id ) => {
+        fetch("/" , { method : "POST" , 
+        headers : { "Content-type" : "application/json" },
+        body : JSON.stringify({ id_destino : id  , TEST : true })
+        })
+        .then( res => res.json() )
+        .then( data => {
+            this.imprimirHorarios( data )
+        });
+    };
+    
+    imprimirHorarios = ( data ) => {
+        this.limpiarSelectHorario()
+        for( let i = 0; i < data.length ; i++ ){
+            $horaReserva.innerHTML += `<option value="${data[i].id_horario}">${data[i].hora_salida}</option>`
+        }
+    };
+
+    // buses = ( id ) => {
+    //     fetch("/" , { method : "POST" , 
+    //     headers : { "Content-type" : "application/json" },
+    //     body : JSON.stringify({ id_bus : id  , TEST : true })
+    //     })
+    //     .then( res => res.json() )
+    //     .then( data => {
+    //         $buses.value = `${ data.a }`
+    //         console.log( data );
+    //         // this.imprimirDestinos( data )
+    //     });
+    // }
+
+    limpiarSelectHorario = () => {
+        $horaReserva.innerHTML = "";
     }
 
     limpiarSelectDestino = () => {
-        $destino.innerHTML = ""
+        $destino.innerHTML = "";
     }
-
     
     limpiarSelectCooperativas = () => {
-        $cooperativa.innerHTML = ""
+        $cooperativa.innerHTML = "";
     };
 
      
 }
+
+
+
+/* ============EJECUTRA0======= */
+
+$destino.addEventListener("change" , () => {
+    let getSelectNew = new getSelect();
+    getSelectNew.horarios( $destino.value )
+});
 
 $cooperativa.addEventListener("change" , () => {
     let getSelectNew = new getSelect();
