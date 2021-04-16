@@ -3,6 +3,7 @@ let $cooperativa = document.querySelector("#cooperativaReserva");
 let $destino = document.querySelector("#destinoReserva");
 let $horaReserva = document.querySelector("#horaReserva");
 let $buses = document.querySelector("#buses");
+let $asientos = document.querySelector("#asientos");
 class getSelect {
     constructor(){}
 
@@ -41,8 +42,10 @@ class getSelect {
     }
 
     imprimirCooperativas = ( data ) => {
-        this.limpiarSelectCooperativas()
-        this.limpiarSelectDestino()
+        this.limpiarSelectCooperativas();
+        this.limpiarSelectDestino();
+        this.limpiarSelectHorario();
+        this.limpiarBusAsientos();
         for( let i = 0; i < data.length ; i++ ){
             $cooperativa.innerHTML += `<option value="${data[i].id_cooperativa}">${data[i].nombre}</option>`
         }
@@ -87,20 +90,36 @@ class getSelect {
         for( let i = 0; i < data.length ; i++ ){
             $horaReserva.innerHTML += `<option value="${data[i].id_horario}">${data[i].hora_salida}</option>`
         }
+
+        this.busAsientos( $horaReserva.value )
+        
     };
 
-    // buses = ( id ) => {
-    //     fetch("/" , { method : "POST" , 
-    //     headers : { "Content-type" : "application/json" },
-    //     body : JSON.stringify({ id_bus : id  , TEST : true })
-    //     })
-    //     .then( res => res.json() )
-    //     .then( data => {
-    //         $buses.value = `${ data.a }`
-    //         console.log( data );
-    //         // this.imprimirDestinos( data )
-    //     });
-    // }
+    busAsientos = ( id ) => {
+        fetch("/" , { method : "POST" , 
+        headers : { "Content-type" : "application/json" },
+        body : JSON.stringify({ id_bus : id  , TEST : true })
+        })
+        .then( res => res.json() )
+        .then( data => {
+            this.imprimirBusAsientos( data )
+        });
+    }
+
+    imprimirBusAsientos = ( data ) => {
+        this.limpiarBusAsientos()
+        let asientos = [];
+        for( let i = 0 ; i < data.asientos.length ; i++  ){
+            asientos.push( data.asientos[i].nombre_asiento )
+        }
+        $buses.value = `Numero unidad : ${data.bus[0].nro_unidad} ---- Asientos : ${asientos}`
+    }
+
+    
+    
+    limpiarBusAsientos = () => {
+        $buses.value = "";
+    }
 
     limpiarSelectHorario = () => {
         $horaReserva.innerHTML = "";
@@ -120,6 +139,11 @@ class getSelect {
 
 
 /* ============EJECUTRA0======= */
+
+$horaReserva.addEventListener("change" , () => {
+    let getSelectNew = new getSelect();
+    getSelectNew.busAsientos( $horaReserva.value )
+});
 
 $destino.addEventListener("change" , () => {
     let getSelectNew = new getSelect();

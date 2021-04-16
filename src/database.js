@@ -104,12 +104,17 @@ getDestinos = async( id ) => {
     }
 
   getBuses = async( id )=> {
-
     try{
-      let texto = "SELECT * FROM bus where fk_destino = $1";
+      let textoBus = "SELECT * FROM bus where id_horario = $1";
+      let textoAsientos = "SELECT * FROM asiento where fk_bus = $1";
       let datos = [ id ]
-      let buses = await pool.query(texto , datos )
-      return buses.rows;
+      let buses = await pool.query( textoBus , datos )
+      let asientos = await pool.query( textoAsientos , datos )
+      return {
+        bus : buses.rows,
+        asientos : asientos.rows
+      };
+       
     }catch(e){
       return "Oops, a ocurrido un error"
     }
