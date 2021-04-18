@@ -10,6 +10,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="./IMG/icono.png">
   <!-- Stylesheets -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/fonts.css">
@@ -166,6 +167,82 @@
     <div class="_reservaInputs">
       <form method="POST">
         <div class="_formGrid">
+
+         
+
+          <div class="__busContainerMain" id="busContainer">
+            
+
+            
+            
+              <div class="indicacionesAsientos">
+
+                <div class="seleccionaAsientos">
+                  <h3>Selecciona los asientos</h3>
+                </div>
+
+                <div class="asientosColores">
+                  <div class="asientoBlanco"></div> Libre
+                  <div class="asientoNaranja"></div> Ocupado 
+                  <div class="asientoCeleste"></div> Seleccionado
+                </div>
+                
+              </div>
+
+              <div class="_busContainer">
+                  <span class="material-icons foco-izq">incomplete_circle</span>
+                  <span class="material-icons foco-der">incomplete_circle</span>
+                
+               
+
+                
+
+                <div class="asientos-der">
+                  <!-- <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div>
+                  <div>V1</div> -->
+                </div>
+
+                <div class="asientos-izq">
+                  <!-- <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div> -->
+                </div>
+
+              </div>
+
+          </div>
+          
           <div class="_formGridSelect">
 
             <div class="span3" align="center" >
@@ -215,14 +292,13 @@
             </div>
 
             
-            <div class="span3">
-            
-            <textarea id="buses" name="w3review" rows="4" cols="50" disabled ></textarea>
-              <!-- <input type="text"  id="buses"  disabled >                 -->
-              <input type="text"  id="asientos" disabled >                
+            <!-- <div class="span3">
+              <textarea id="buses" name="w3review" rows="4" cols="50" disabled ></textarea>
+            </div> -->
+
+            <div class="span3" align="center">
+              <button type="button" onclick="mostrarBus()"> Seleccionar asientos </button>
             </div>
-
-
             
             <div >
               <label for="adultosReserva">Adultos</label>

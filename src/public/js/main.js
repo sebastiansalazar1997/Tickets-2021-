@@ -4,11 +4,21 @@ let $destino = document.querySelector("#destinoReserva");
 let $horaReserva = document.querySelector("#horaReserva");
 let $buses = document.querySelector("#buses");
 let $asientos = document.querySelector("#asientos");
+let $asientos_der = document.querySelector(".asientos-der");
+let $asientos_izq = document.querySelector(".asientos-izq");
+let $__busContainerMain = document.querySelector(".__busContainerMain");
+let $busContainer = document.querySelector("#busContainer");
+
+
+let asientosArrayOcupados = []
 class getSelect {
-    constructor(){}
+    constructor( asientosOcuadosArray ){
+        this.asientosOcupados = asientosOcuadosArray;
+        this.asientosMain = [];
+    }
 
     terminal = ( boolean ) =>{
-        fetch("/" , { method : "POST" , 
+        fetch("/" , { method : "POST" ,
         headers : { "Content-type" : "application/json" },
         body : JSON.stringify({ terminalSelect : boolean , TEST : true })
         })
@@ -18,7 +28,7 @@ class getSelect {
         });
     }
 
-    
+
     imprimirTerminales = ( data ) => {
 
         for( let i = 0; i < data.length ; i++ ){
@@ -31,7 +41,7 @@ class getSelect {
     }
 
     cooperativas = (idCooperativa) => {
-        fetch("/" , { method : "POST" , 
+        fetch("/" , { method : "POST" ,
         headers : { "Content-type" : "application/json" },
         body : JSON.stringify({ idCooperativa : idCooperativa , TEST : true })
         })
@@ -45,7 +55,7 @@ class getSelect {
         this.limpiarSelectCooperativas();
         this.limpiarSelectDestino();
         this.limpiarSelectHorario();
-        this.limpiarBusAsientos();
+        // this.limpiarBusAsientos();
         for( let i = 0; i < data.length ; i++ ){
             $cooperativa.innerHTML += `<option value="${data[i].id_cooperativa}">${data[i].nombre}</option>`
         }
@@ -53,7 +63,7 @@ class getSelect {
     }
 
     destinos = ( id ) => {
-        fetch("/" , { method : "POST" , 
+        fetch("/" , { method : "POST" ,
         headers : { "Content-type" : "application/json" },
         body : JSON.stringify({ id_cooperativa : id  , TEST : true })
         })
@@ -75,7 +85,7 @@ class getSelect {
 
 
     horarios = ( id ) => {
-        fetch("/" , { method : "POST" , 
+        fetch("/" , { method : "POST" ,
         headers : { "Content-type" : "application/json" },
         body : JSON.stringify({ id_destino : id  , TEST : true })
         })
@@ -84,7 +94,7 @@ class getSelect {
             this.imprimirHorarios( data )
         });
     };
-    
+
     imprimirHorarios = ( data ) => {
         this.limpiarSelectHorario()
         for( let i = 0; i < data.length ; i++ ){
@@ -92,33 +102,82 @@ class getSelect {
         }
 
         this.busAsientos( $horaReserva.value )
-        
+
     };
 
     busAsientos = ( id ) => {
-        fetch("/" , { method : "POST" , 
+        fetch("/" , { method : "POST" ,
         headers : { "Content-type" : "application/json" },
         body : JSON.stringify({ id_bus : id  , TEST : true })
         })
         .then( res => res.json() )
         .then( data => {
-            this.imprimirBusAsientos( data )
+            this.asientosMain = data
         });
+        
     }
+
+  
 
     imprimirBusAsientos = ( data ) => {
         this.limpiarBusAsientos()
-        let asientos = [];
-        for( let i = 0 ; i < data.asientos.length ; i++  ){
-            asientos.push( data.asientos[i].nombre_asiento )
+        // console.log( data );
+        let ventana = data.asientos.filter( x => {
+            return x.descripcion == 'ventana'
+        });
+
+        let pasillo = data.asientos.filter( x => {
+            return x.descripcion == 'pasillo'
+        });
+
+
+        for( let i = 0 ; i < ventana.length ; i++ ){
+            $asientos_der.innerHTML += `<div id="${ ventana[i].nombre_asiento }">
+            ${ ventana[i].nombre_asiento }
+            <input value="${ ventana[i].nombre_asiento }"  name="asientosSeleccionados" hidden >
+            </div>`
         }
-        $buses.value = `Numero unidad : ${data.bus[0].nro_unidad} ---- Asientos : ${asientos}`
+
+        for( let i = 0 ; i < pasillo.length ; i++ ){
+            $asientos_izq.innerHTML += `<div id="${ pasillo[i].nombre_asiento }">${ pasillo[i].nombre_asiento }</div>`
+        }
+
+        this.asientosOcupadosFiltrar( data )
     }
 
-    
-    
+    asientosOcupadosFiltrar = ( data ) => {
+        let asientosOcupadosFilter = data.asientos.filter( x => {
+            return x.estado == false
+        });
+
+        asientosOcupadosFilter != undefined && asientosOcupadosFilter.length > 0  ? 
+        this.guardarAsientosOcupados( asientosOcupadosFilter )
+        :
+        this.guardarAsientosOcupados( false )
+    }
+
+    guardarAsientosOcupados = ( data ) => {
+        if( data ){
+            this.asientosOcupados = data;
+            this.pintarAsientosOcupados()
+        }
+
+        return  this.asientosOcupados
+    };
+     
+
+    pintarAsientosOcupados = () => {
+        for( let i = 0 ; i < this.asientosOcupados.length ; i++ ){
+            let asientoOcupado = document.getElementById(`${ this.asientosOcupados[i].nombre_asiento }`);
+            asientoOcupado.setAttribute("style" , "background-color : orange");
+        }
+    };
+ 
+
+
     limpiarBusAsientos = () => {
-        $buses.value = "";
+        $asientos_der.innerHTML = "";
+        $asientos_izq.innerHTML = "";
     }
 
     limpiarSelectHorario = () => {
@@ -128,21 +187,111 @@ class getSelect {
     limpiarSelectDestino = () => {
         $destino.innerHTML = "";
     }
-    
+
     limpiarSelectCooperativas = () => {
         $cooperativa.innerHTML = "";
     };
 
-     
+
+}
+
+let asientosSelect = []
+let asientosSelectOcupados = []
+
+class Asientos{
+  constructor( asientosArray , asientosArrayOcupados  ){
+      this.asientosPintar = asientosArray;
+      this.asientosPintarOcupados = asientosArrayOcupados;
+  }
+
+    comprovarAsientos = ( id ) => {
+        console.log();
+            if(this.asientosPintar.includes( id )){
+                this.deselccionarAsiento( id )
+            }else{
+                this.seleccionarAsiento( id )
+            }
+    }
+
+    error = () => {
+        alert("Maximo 5 asientos")
+    }
+
+    seleccionarAsiento = ( id ) => {
+        if( this.asientosPintar.length >= 5 ){
+            this.error()
+        }else{
+            this.asientosPintar.push( id )
+            this.pintarAsientos()
+        }
+    };
+    
+    deselccionarAsiento = async( id ) => {
+        await this.eliminarAtrr()
+        let indice = this.asientosPintar.indexOf( id )
+        this.asientosPintar.splice( indice , 1 )
+        this.pintarAsientos()
+    };
+    
+    
+    pintarAsientos = ( id ) =>{
+        for( let i = 0 ; i < this.asientosPintar.length ; i++ ){
+            let asiento = document.getElementById(`${ this.asientosPintar[i] }`);
+            asiento.setAttribute("style" , "background-color : skyblue");
+        }
+    };
+
+    pintarAsientosOcupados = () => {
+        for( let i = 0 ; i < this.asientosPintar.length ; i++ ){
+            let asiento = document.getElementById(`${ this.asientosPintar[i] }`);
+            asiento.setAttribute("style" , "background-color : skyblue");
+        }
+    };
+
+    eliminarAtrr = () => {
+        for( let i = 0 ; i < this.asientosPintar.length ; i++ ){
+            let asiento = document.getElementById(`${ this.asientosPintar[i] }`);
+            asiento.removeAttribute("style");
+        }
+    }
+    
 }
 
 
+// let impedirPintarAsientosOcupados = () => {
+//     let getSelectNew = new getSelect();
+//     getSelectNew.busAsientos( $horaReserva.value )
+// }
 
-/* ============EJECUTRA0======= */
 
+/* ==============MOSTRAR OCULTAR BUS =============== */
+let mostrarBus = () => {
+ $__busContainerMain.style.display = "flex"
+}
+
+$__busContainerMain.addEventListener("click" , x => {
+    if (x.target.id == 'busContainer' ) {
+        $__busContainerMain.style.display = "none"
+    }
+});
+/* ==============*FIN MOSTRAR OCULTAR BUS =============== */
+
+
+/* ================ASIENTOS================= */
+$busContainer.addEventListener( "click", x => {
+    let newAsiento = new Asientos( asientosSelect , asientosSelectOcupados );
+    if ( x.target.id &&  x.target.id != "busContainer" ) {
+        newAsiento.comprovarAsientos(x.target.id)
+    }
+  })
+/* =======*FIN ASIENTOS========= */
+
+
+/* ============EJECUTRA======= */
 $horaReserva.addEventListener("change" , () => {
     let getSelectNew = new getSelect();
-    getSelectNew.busAsientos( $horaReserva.value )
+    let asientosImpedirPintar =  getSelectNew.busAsientos( $horaReserva.value );
+    console.log( asientosImpedirPintar );
 });
 
 $destino.addEventListener("change" , () => {
@@ -160,5 +309,5 @@ $terminal.addEventListener("change" , () => {
     getSelectNew.cooperativas( $terminal.value );
 });
 
-let getSelectNew = new getSelect();
+let getSelectNew = new getSelect( asientosArrayOcupados );
 getSelectNew.terminal( true )

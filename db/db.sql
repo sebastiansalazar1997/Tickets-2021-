@@ -236,5 +236,52 @@ insert into asiento( nombre_asiento  ,estado , descripcion , fk_bus , fk_horario
 ( '42P' , true , 'pasillo' , '14' ,  '14' ,  1  ),
 ( '43V' , true , 'ventana' , '14' ,  '14' ,  1  )
 
+
+
+
+select * from bus
+alter table bus drop column fk_bus
+alter table bus drop column fk_horario
+insert into bus(nro_unidad , capacidad , nro_pisos ,  id_horario , cedula_chofer ) values
+( 1 , '40' , '1' , '1' , '123456789' ),
+( 2 , '38' , '2' , '2' , '1234564442' ),
+( 3 , '40' , '1' , '3' , '1234564444' ),
+( 4 , '41' , '2' , '4' , '12340577456' ),
+( 5 , '40' , '1' , '5' , '12340575465' ),
+( 6 , '35' , '2' , '6' , '1234057454' ),
+( 7 , '39' , '1' , '7' , '123405545' ),
+( 8 , '41' , '2' , '8' , '1234054587' ),
+( 9 , '42' , '1' , '9' , '1234057545' ),
+( 10 , '40' , '2' , '10' , '123405421' ),
+( 11 , '39' , '1' , '11' , '123405656' ),
+( 12 , '41' , '2' , '12' , '123445744' ),
+( 13 , '43' , '1' , '13' , '1234054654' ),
+( 14 , '38' , '2' , '14' , '12345456744' ),
+( 15 , '39' , '1' , '15' , '12341545644' );
+
+alter table bus add constraint fk_horarios foreign key(id_horario) references horario(id_horario)
+
+
+alter table bus drop column id_cooperativa
+truncate bus
+
+alter table bus rename column nro_piso to nro_pisos
+
+
+create sequence secuencia_fk_asientos;
+select nextval('secuencia_fk_asientos');
+
+
+
+select * from asiento
+
+ALTER TABLE asiento ALTER COLUMN pk_asiento SET DATA TYPE nextval('secuencia_fk_asientos');
+alter table asiento add column nombre_asiento character varying(15)
+alter table asiento drop column id_asiento
+alter table asiento drop column pk_asiento
+alter table asiento add column id_asiento bigint default nextval('secuencia_fk_asientos');
+
+delete from asiento where fk_bus = '14'
+
 /* alter table asiento add column id_asiento bigint default nextval('secuencia_fk_asientos');    <================ ASI ES COMO CREE UNA SECUENCIA PARA PARA PK DE LA TABLA ASIENTO, LINK DEL TUTORIAL :   https://www.tutorialesprogramacionya.com/postgresqlya/temarios/descripcion.php?cod=228&punto=70&inicio= */
 /* Recordatorio : Tienes que corregir el error de actualizacion de datos al momento de cambiar de terminal no se cambios correctamente los destinos en base a su cooperativa */

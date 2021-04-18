@@ -39,6 +39,7 @@
 }
 
 ._formGrid {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -48,6 +49,134 @@
     border-radius: 10px;
 }
 
+/* ==================BUS================== */
+.__busContainerMain{
+    position: absolute;
+    display: none; /* flex */
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.534);
+}
+
+
+/* ====INDICACIONES====== */
+
+.indicacionesAsientos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.indicacionesAsientos h3{
+    color: white;
+    text-align: center;
+    font-size: 35px;
+}
+
+
+.asientosColores >div{
+    margin: 0 10px;
+}
+
+.asientoBlanco{
+    display: inline-block;
+    /* float: left; */
+    width: 15px;
+    height: 15px;
+    background-color: white;
+}
+.indicacionesAsientos > div{
+    margin: 0 15px;
+}
+
+.asientoNaranja{
+    /* float: left; */
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: orange;
+}
+
+.asientoCeleste{
+    /* float: left; */
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: skyblue;
+}
+
+/* ====*FININDICACIONES====== */
+
+.foco-izq{
+    font-size: 40px;
+    transform: rotate(-150deg);
+    position: absolute;
+    color: white;
+    top: -15px;
+    left: 35px;
+}
+
+.foco-der{
+    font-size: 40px;
+    transform: rotate(-150deg);
+    position: absolute;
+    color: white;
+    top: -15px;
+    right:35px;
+}
+
+
+
+._busContainer{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr) ;
+    background-color: white;
+    width: 220px;
+    height: min-content;
+    gap: 40px;
+    padding: 50px 10px 20px 10px;
+    border-radius: 40px 40px 10px 10px;
+}
+
+
+
+
+._busContainer > div{
+    /* border: 1px solid black; */
+}
+
+.asientos-der, .asientos-izq{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    /* grid-template-rows: repeat( auto , minmax( 30px , 35px ) ); */
+    gap: 6px;
+    color: green;
+    font-size: 13px;
+}
+
+.asientos-der > div, .asientos-izq > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid green;
+    border-radius: 5px;
+    min-height: 37px;
+    cursor: pointer;
+}
+
+.asientos-der > div:hover, .asientos-izq > div:hover{
+    background-color: rgba(236, 234, 234, 0.952);
+}
+
+
+
+/* ==================*FIN BUS================== */
 
 ._formGridSelect {
     display: grid;
