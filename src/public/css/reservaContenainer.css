@@ -7,7 +7,8 @@
 ._reservaMainContainer {
     display: grid;
     grid-template-columns: repeat( 2 , minmax( min-content , 1fr ) );
-    min-height: 650px;
+    /* min-height: 950px; */
+    /* height : auto; */
     background-color: var(--negro);
     gap: 1em;
     color: white;
@@ -16,7 +17,7 @@
 
 .infoReserva {
     margin: auto 0 auto 150px;
-    max-width: 750px;
+    /* max-width: 750px; */
 }
 
 .infoReserva > div{
@@ -46,7 +47,9 @@
     background-color: var(--blanco);
     /* padding: 30px; */
     width: 600px;
+    min-height: 700px;
     border-radius: 10px;
+    /* min-height: 700px ; */
 }
 
 /* ==================BUS================== */
@@ -60,7 +63,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.534);
+    background-color: hsla(0, 0%, 0%, 0.767);
+    padding : 25px;
 }
 
 
@@ -203,7 +207,7 @@
 }
 
 .valorTotal {
-    display: flex;
+    display: none; /* flex */
     border-radius: 5px;
     padding: 3px 10px;
     background-color: rgb(251, 205, 205);
@@ -247,6 +251,7 @@
 
 ._busContainer{
     position: relative;
+    margin : 15px 0;
     display: grid;
     grid-template-columns: repeat(2 , 1fr) ;
     background-color: white;

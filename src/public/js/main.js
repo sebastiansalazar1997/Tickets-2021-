@@ -11,6 +11,9 @@ let $busContainer = document.querySelector("#busContainer");
 let $cantidadAdultos = document.getElementById("cantidadAdultos");
 let $cantidadNinios = document.getElementById("cantidadNinios");
 let $niniosAdulto = document.querySelector(".niniosAdulto");
+let $numeroTotal = document.querySelector(".numeroTotal");
+let $precioPorAsiento = document.querySelector(".precioPorAsiento");
+let $valorTotal = document.querySelector(".valorTotal");
 
 
 let asientosArrayOcupados = []
@@ -123,6 +126,8 @@ class getSelect {
         
     }
 
+    
+
     imprimirBusAsientos = ( data ) => {
         this.limpiarBusAsientos()
         let ventana = data.asientos.filter( x => {
@@ -214,7 +219,8 @@ class Asientos{
       this.asientosPintarOcupados = [];
       this.colorAsiento = "";
       this.$adultoONinioRadio = document.reservaAsientoForm.adultosNinios.value;
-      this.precioDestino = 0
+      this.precioDestinoAdulto = 0
+      this.precioDestinoNinio = 0
   }
 
   
@@ -226,16 +232,34 @@ class Asientos{
         })
         .then( res => res.json() )
         .then( data => {
-            // this.precioDestino = data.destino[0].precio;
-        console.log( data[0].precio_adulto )        
-            this.nombreAColor( data.asientos , id_asiento )
+            this.precioDestinoAdulto = data.destino[0].precio_adulto;
+            this.precioDestinoNinio = data.destino[0].precio_ninio;
+            if( id_asiento == null ){
+                return this.imprimirValoresAsientos();
+            }
+            this.nombreAColor( data.asientos , id_asiento );
         });
         
     }
 
-    precioPagarDestino = ( precio ) => {
-        this.precioDestino = precio;
+    precioPagarDestino = () => {
+        let precioAdulto = this.precioDestinoAdulto * this.asientosPintar.length;
+        let precioNinio = this.precioDestinoNinio * this.asientosPintarNinios.length;
+        let total = precioAdulto + precioNinio;
+        if( total > 0 ){
+            $valorTotal.style.display = "flex"
+            this.imprimirPecioTotalpagar( total )
+        }else{
+            $valorTotal.style.display = "none"
+        }
+        
     }
+
+   
+    
+    imprimirPecioTotalpagar = ( total ) => {
+        $numeroTotal.innerHTML = `<h6>&nbsp$${ total }</h6>`        
+    };
 
     nombreAColor = ( asientos , id ) => {
         if( this.$adultoONinioRadio == '' ){
@@ -300,7 +324,7 @@ class Asientos{
             }
 
             this.pintarAsientos()
-            
+            this.precioPagarDestino()
         }
     };
     
@@ -314,6 +338,7 @@ class Asientos{
             this.asientosPintarNinios.splice( indiceNinios , 1 )
         }
         this.pintarAsientos()
+        this.precioPagarDestino()
     };
     
     
@@ -342,6 +367,10 @@ class Asientos{
             asiento.removeAttribute("style");
         }
     }
+
+    imprimirValoresAsientos = () => {
+        $precioPorAsiento.innerHTML = `<h6>&nbspAdultos: $${ this.precioDestinoAdulto } - Niños : $${ this.precioDestinoNinio }</h6>`
+    }
     
 }
 
@@ -349,7 +378,9 @@ class Asientos{
 
 /* ==============MOSTRAR OCULTAR BUS =============== */
 let mostrarBus = () => {
- $__busContainerMain.style.display = "flex"
+    $__busContainerMain.style.display = "flex"
+    let newAsiento = new Asientos()
+    newAsiento.busAsientos( $horaReserva.value , null , $destino.value )
 }
 
 $__busContainerMain.addEventListener("click" , x => {
