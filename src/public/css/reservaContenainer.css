@@ -75,11 +75,88 @@
 .indicacionesAsientos h3{
     color: white;
     text-align: center;
-    font-size: 35px;
+    font-size: 25px;
+}
+
+.cantidadAdultosNinios {
+    display: flex;
+    position: relative;
+    /* width: 350px; */
+    border: 1px solid white;
+    padding: 3px 7px;
+    border-radius: 12px;
+    /* justify-content: space-between; */
+}
+
+.cantidadAdultosNinios > div{
+    display: flex;
+    align-items: center;
+}
+
+.cantidadAdultosNinios input[type="radio"]{
+    display: inline-block;
+    margin: 0 3px 0 3px;
+    padding: 0 !important;
+    width: 18px !important;
+    color: red !important;
+}
+
+.cantidadAdultosNinios input[type="radio"]:focus{
+    padding: 0 !important;
+    color: red !important;
 }
 
 
-.asientosColores >div{
+/* .cantidadAdultosNinios::after {
+    content: "Selecciona la cantidad de asientos";
+    position: absolute;
+    font-size: 13px;
+    bottom: -20px;
+    right: 10%;
+} */
+
+
+.cantidadAdultosNinios > div{
+    /* margin-right: 12px; */
+}
+
+
+.cantidadAdultosNinios label{
+    color: white !important;
+    /* margin: 10px; */
+    /* display: block; */
+    text-align: center;
+}
+
+
+.cantidadAdultosNinios select{
+    border: none !important;
+    color: white !important;
+}
+
+.cantidadAdultosNinios select:focus{
+    background-color: rgb(104, 104, 104) !important;
+}
+
+.selectNinios{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: green;
+    margin: 0 5px -2px 5px !important;
+}
+
+.selectAdultos{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: skyblue;
+    
+    margin: 0 5px -2px 5px !important;
+}
+
+
+.asientosColores > div{
     margin: 0 10px;
 }
 
@@ -112,6 +189,42 @@
 
 /* ====*FININDICACIONES====== */
 
+/*================TOTAL PAGAR ===================== */
+
+.valorTotalReserva {
+    /* position: absolute; */
+    display: flex;
+    /* border: 2px solid white; */
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+    overflow: hidden;
+    /* padding: 3px 10px; */
+}
+
+.valorTotal {
+    display: flex;
+    border-radius: 5px;
+    padding: 3px 10px;
+    background-color: rgb(251, 205, 205);
+}
+
+.precioPorAsiento{
+    padding: 3px 10px;
+}
+
+.valorTotalReserva h6{
+    color: black;
+    font-size: 12px;
+}
+
+
+
+
+
+/* ==============*FIN TOTAL PAGAR ===================== */
+
+
 .foco-izq{
     font-size: 40px;
     transform: rotate(-150deg);
@@ -142,13 +255,6 @@
     gap: 40px;
     padding: 50px 10px 20px 10px;
     border-radius: 40px 40px 10px 10px;
-}
-
-
-
-
-._busContainer > div{
-    /* border: 1px solid black; */
 }
 
 .asientos-der, .asientos-izq{

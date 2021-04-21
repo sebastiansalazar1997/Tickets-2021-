@@ -8,6 +8,9 @@ let $asientos_der = document.querySelector(".asientos-der");
 let $asientos_izq = document.querySelector(".asientos-izq");
 let $__busContainerMain = document.querySelector(".__busContainerMain");
 let $busContainer = document.querySelector("#busContainer");
+let $cantidadAdultos = document.getElementById("cantidadAdultos");
+let $cantidadNinios = document.getElementById("cantidadNinios");
+let $niniosAdulto = document.querySelector(".niniosAdulto");
 
 
 let asientosArrayOcupados = []
@@ -55,6 +58,7 @@ class getSelect {
         this.limpiarSelectCooperativas();
         this.limpiarSelectDestino();
         this.limpiarSelectHorario();
+        this.limpiarBusAsientos()
         // this.limpiarBusAsientos();
         for( let i = 0; i < data.length ; i++ ){
             $cooperativa.innerHTML += `<option value="${data[i].id_cooperativa}">${data[i].nombre}</option>`
@@ -112,16 +116,15 @@ class getSelect {
         })
         .then( res => res.json() )
         .then( data => {
-            this.asientosMain = data
+
+            this.imprimirBusAsientos( data )
+            
         });
         
     }
 
-  
-
     imprimirBusAsientos = ( data ) => {
         this.limpiarBusAsientos()
-        // console.log( data );
         let ventana = data.asientos.filter( x => {
             return x.descripcion == 'ventana'
         });
@@ -172,7 +175,6 @@ class getSelect {
             asientoOcupado.setAttribute("style" , "background-color : orange");
         }
     };
- 
 
 
     limpiarBusAsientos = () => {
@@ -195,73 +197,154 @@ class getSelect {
 
 }
 
-let asientosSelect = []
-let asientosSelectOcupados = []
 
+/* ======================================================================================= */
+/* ======================================================================================= */
+/* ======================================================================================= */
+/* ======================================================================================= */
+
+
+
+let asientosSelect = []
+let asientosSelectNinios = []
 class Asientos{
-  constructor( asientosArray , asientosArrayOcupados  ){
+  constructor( asientosArray , asientosArrayNinios ){
       this.asientosPintar = asientosArray;
-      this.asientosPintarOcupados = asientosArrayOcupados;
+      this.asientosPintarNinios = asientosArrayNinios;
+      this.asientosPintarOcupados = [];
+      this.colorAsiento = "";
+      this.$adultoONinioRadio = document.reservaAsientoForm.adultosNinios.value;
+      this.precioDestino = 0
   }
 
+  
+  
+    busAsientos = ( id , id_asiento , id_destino ) => {
+        fetch("/" , { method : "POST" ,
+        headers : { "Content-type" : "application/json" },
+        body : JSON.stringify({ id_bus : id , destino : id_destino, TEST : true })
+        })
+        .then( res => res.json() )
+        .then( data => {
+            // this.precioDestino = data.destino[0].precio;
+        console.log( data[0].precio_adulto )        
+            this.nombreAColor( data.asientos , id_asiento )
+        });
+        
+    }
+
+    precioPagarDestino = ( precio ) => {
+        this.precioDestino = precio;
+    }
+
+    nombreAColor = ( asientos , id ) => {
+        if( this.$adultoONinioRadio == '' ){
+            this.error("color")
+        }else{
+            switch ( this.$adultoONinioRadio ) {
+                case "ninios":
+                // return "green"
+                this.colorAsiento = "greenyellow"
+                break;
+                case "adultos":
+                    // return "skyblue"
+                this.colorAsiento = "skyblue"
+                break;
+            }
+                    
+            this.impedirPintarAsientosOcupados( asientos , id )
+        }
+    }
+  
+    impedirPintarAsientosOcupados = ( data , id_asiento ) => {
+        let asientosOcupados = data.filter( (x) => {
+            return x.estado == false
+        });
+
+        for( let i = 0 ; i < asientosOcupados.length ; i++ ){
+            this.asientosPintarOcupados.push( asientosOcupados[i].nombre_asiento )
+        }
+        
+
+        if( !this.asientosPintarOcupados.includes( id_asiento ) ){
+            this.comprovarAsientos( id_asiento )
+        }
+    }
+    
     comprovarAsientos = ( id ) => {
-        console.log();
-            if(this.asientosPintar.includes( id )){
+            if(this.asientosPintar.includes( id ) || this.asientosPintarNinios.includes( id ) ){
                 this.deselccionarAsiento( id )
             }else{
                 this.seleccionarAsiento( id )
             }
     }
 
-    error = () => {
-        alert("Maximo 5 asientos")
+    error = ( err ) => {
+        if ( err == 'maximo' ) {
+            alert("Maximo 5 asientos")
+        }else if( err = 'color' ){
+            alert("Elige adulto o niños")
+        }
     }
 
     seleccionarAsiento = ( id ) => {
-        if( this.asientosPintar.length >= 5 ){
-            this.error()
+        if( this.asientosPintar.length >= 5 || this.asientosPintarNinios.length >= 5){
+            this.error("maximo")
         }else{
-            this.asientosPintar.push( id )
+            if( this.$adultoONinioRadio == 'adultos' ){
+                this.asientosPintar.push( id );
+                console.log( this.asientosPintar );
+            }else if( this.$adultoONinioRadio == 'ninios' ){
+                this.asientosPintarNinios.push( id );
+                console.log( this.asientosPintarNinios );
+            }
+
             this.pintarAsientos()
+            
         }
     };
     
     deselccionarAsiento = async( id ) => {
         await this.eliminarAtrr()
         let indice = this.asientosPintar.indexOf( id )
-        this.asientosPintar.splice( indice , 1 )
+        let indiceNinios = this.asientosPintarNinios.indexOf( id )
+        if( indice != -1 ){
+            this.asientosPintar.splice( indice , 1 )
+        }else if(  indiceNinios != -1 ){
+            this.asientosPintarNinios.splice( indiceNinios , 1 )
+        }
         this.pintarAsientos()
     };
     
     
-    pintarAsientos = ( id ) =>{
+    pintarAsientos = (  ) =>{
         for( let i = 0 ; i < this.asientosPintar.length ; i++ ){
             let asiento = document.getElementById(`${ this.asientosPintar[i] }`);
-            asiento.setAttribute("style" , "background-color : skyblue");
+            asiento.setAttribute("style" , `background-color : skyblue`);
+        }
+
+        for( let i = 0 ; i < this.asientosPintarNinios.length ; i++ ){
+            let asiento = document.getElementById(`${ this.asientosPintarNinios[i] }`);
+            asiento.setAttribute("style" , `background-color : yellowgreen`);
         }
     };
 
-    pintarAsientosOcupados = () => {
-        for( let i = 0 ; i < this.asientosPintar.length ; i++ ){
-            let asiento = document.getElementById(`${ this.asientosPintar[i] }`);
-            asiento.setAttribute("style" , "background-color : skyblue");
-        }
-    };
+    
 
     eliminarAtrr = () => {
         for( let i = 0 ; i < this.asientosPintar.length ; i++ ){
             let asiento = document.getElementById(`${ this.asientosPintar[i] }`);
             asiento.removeAttribute("style");
         }
+
+        for( let i = 0 ; i < this.asientosPintarNinios.length ; i++ ){
+            let asiento = document.getElementById(`${ this.asientosPintarNinios[i] }`);
+            asiento.removeAttribute("style");
+        }
     }
     
 }
 
-
-// let impedirPintarAsientosOcupados = () => {
-//     let getSelectNew = new getSelect();
-//     getSelectNew.busAsientos( $horaReserva.value )
-// }
 
 
 /* ==============MOSTRAR OCULTAR BUS =============== */
@@ -277,21 +360,20 @@ $__busContainerMain.addEventListener("click" , x => {
 /* ==============*FIN MOSTRAR OCULTAR BUS =============== */
 
 
-/* ================ASIENTOS================= */
-$busContainer.addEventListener( "click", x => {
-    let newAsiento = new Asientos( asientosSelect , asientosSelectOcupados );
-    if ( x.target.id &&  x.target.id != "busContainer" ) {
-        newAsiento.comprovarAsientos(x.target.id)
+/* ============0ASIENTOS PINTAR - DESPINTAR============*/
+  $busContainer.addEventListener( "click", x => {
+      let newAsiento = new Asientos( asientosSelect , asientosSelectNinios  );
+      if ( x.target.id &&  x.target.id != "busContainer" ) {
+        newAsiento.busAsientos( $horaReserva.value , x.target.id , $destino.value )
     }
   })
-/* =======*FIN ASIENTOS========= */
+/* =======*FIN ASIENTOS PINTAR - DESPINTAR========= */
 
 
-/* ============EJECUTRA======= */
+/* ============IMPRIMIR TERMINAL - COOPERATIVAS - DESTINO - HORA - BUS Y ASIENTOS======= */
 $horaReserva.addEventListener("change" , () => {
     let getSelectNew = new getSelect();
-    let asientosImpedirPintar =  getSelectNew.busAsientos( $horaReserva.value );
-    console.log( asientosImpedirPintar );
+    getSelectNew.busAsientos( $horaReserva.value );
 });
 
 $destino.addEventListener("change" , () => {

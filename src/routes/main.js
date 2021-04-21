@@ -38,10 +38,11 @@ app.post( "/" , ( req, res ) => {
       });
 
     }else if( req.body.id_bus ){
-      getBuses( req.body.id_bus )
+      getBuses( req.body.id_bus , req.body.destino )
       .then( x => {
         res.json(x)
       })
+
     }
 
   }else {

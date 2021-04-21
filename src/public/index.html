@@ -165,18 +165,14 @@
     </div>
 
     <div class="_reservaInputs">
-      <form method="POST">
+      <form method="POST" name="reservaAsientoForm">
         <div class="_formGrid">
 
          
 
           <div class="__busContainerMain" id="busContainer">
             
-
-            
-            
               <div class="indicacionesAsientos">
-
                 <div class="seleccionaAsientos">
                   <h3>Selecciona los asientos</h3>
                 </div>
@@ -184,18 +180,47 @@
                 <div class="asientosColores">
                   <div class="asientoBlanco"></div> Libre
                   <div class="asientoNaranja"></div> Ocupado 
-                  <div class="asientoCeleste"></div> Seleccionado
+                  <!-- <div class="asientoCeleste"></div> Seleccionado -->
                 </div>
+                
+                <div class="cantidadAdultosNinios">
+                  <div>
+                    <input type="radio" class="adultosRadio niniosAdulto"  value="adultos" name="adultosNinios">
+                    <label for="cantidadAdultos">Adultos</label>
+                    <div class="selectAdultos"></div>
+                  </div>
+                  <div>
+                    |
+                  </div>
+                  <div>
+                    <input type="radio" class="niniosRadio niniosAdulto"  value="ninios"  name="adultosNinios">
+                    <label for="cantidadNinios">Niños/Discapacitados/3ra edad</label>
+                    <div class="selectNinios"></div>
+                  </div>
+                </div>
+
                 
               </div>
 
+              <div class="valorTotalReserva">
+                <div class="valorTotal">
+                  <div>
+                    <h6>Valor Total: </h6>
+                  </div>
+                  <div class="numeroTotal">
+                    <h6>&nbsp$100</h6>
+                  </div>
+                </div>
+                <div class="precioPorAsiento">
+                  <h6>&nbspPor asiento: $5</h6>
+                </div>
+              </div>
+              
+
               <div class="_busContainer">
+                
                   <span class="material-icons foco-izq">incomplete_circle</span>
                   <span class="material-icons foco-der">incomplete_circle</span>
-                
-               
-
-                
 
                 <div class="asientos-der">
                   <!-- <div>V1</div>
@@ -248,7 +273,7 @@
             <div class="span3" align="center" >
               <h6>Reserva</h6>
             </div>
-  
+
             <div class="span3">
               <label for="terminalReserva">Terminal</label>
               <select name="terminalReserva" id="terminalReserva">
@@ -299,7 +324,7 @@
             <div class="span3" align="center">
               <button type="button" onclick="mostrarBus()"> Seleccionar asientos </button>
             </div>
-            
+<!--             
             <div >
               <label for="adultosReserva">Adultos</label>
               <select name="adultosReserva" id="adultosReserva">
@@ -319,7 +344,7 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
               </select>
-            </div>
+            </div> -->
           
           </div>
             
