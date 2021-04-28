@@ -1,0 +1,130 @@
+html,body {
+    height: 100%;
+    /* background-color: rebeccapurple; */
+    margin : 0;
+}
+
+:root {
+    --negro : rgb(34, 33, 33);
+}
+
+.__cajaMainLoginCentrar{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.__cajaMainLoginCentrar p {
+    margin: 0;
+}
+
+.loginAdmin {
+    background-color: var(--negro);
+    width: 100%;
+    position: absolute;
+    top: 2%;
+}
+
+.loginAdmin p{
+    color: white;
+    margin: 0;
+    font-size: 20px;
+    float: right;
+    margin: 18px;
+    font-weight: 300;
+}
+
+
+.tipoLogin{
+    background-color:rgb(247, 189, 82);
+    width: 400px;
+    margin-bottom: 10px;
+    color : rgb(97, 95, 95);
+    padding: 5px 10px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.nameLogin {
+    padding: 0 10px;
+    color : rgb(99, 99, 99);
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 3px;
+}
+
+
+.__cajaMainLoginCentrar img{
+    width: 50px;
+    margin: 10px 15px;
+    /* margin-bottom: 50px; */
+}
+
+.__cajaMainLogin{
+    background-color: rgb(243, 243, 243);
+    max-width: 500px;
+    width: 400px;
+    overflow: hidden;
+    box-shadow: -3px 3px 3px rgba(0,0,0, 0.1);
+    justify-self: flex-end;
+}
+
+.__cajaMainLogin > div {
+    margin : 13px;
+}
+
+#email,#password{
+    width: 100%;
+}
+
+
+input{
+    max-height: 40px;
+    height: 40px;
+    border: none;
+}
+
+.__cajaMainLogin input::placeholder{
+    padding: 10px;
+}
+
+
+.__cajaMainLogin button{
+    width: 100%;
+    border: none;
+    height: 40px;
+    background-color: rgb(34, 33, 33);
+    color: white;
+}
+
+.__loginAdminFooter {
+    display: flex;
+    justify-content: center;
+    padding: 18px 10px  ;
+    background-color: rgb(34, 33, 33);
+    position: absolute;
+    max-width: 98%;
+    width: 100%;
+    bottom: 0%;
+    color: white;
+}
+
+.__loginAdminFooter > div{
+    margin: 0 10px;
+}
+
+
+.__loginAdminFooter a{
+    margin: 0;
+    font-size: 12px;
+    color:white;
+    text-decoration: none;
+}
+
+.__loginAdminFooter a:hover{
+    color: rgb(204, 200, 200);
+    text-decoration: underline;
+}
