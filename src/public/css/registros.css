@@ -1,0 +1,105 @@
+:root {
+    --negro :rgb(133, 131, 131);
+    --fontSize : 13px;
+}
+
+
+body {
+    background-color: rgb(235, 235, 235) !important;
+    margin: 0;
+}
+
+.__registrosContenedorMain {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 15px;
+    width: 100%;
+    
+}
+
+.nameTerminalSelect label {
+    display: block;
+    color: var(--negro);
+    font-size: var(--fontSize);
+    /* margin-left: 10px ; */
+    margin-bottom: 3px;
+    text-align: center;
+}
+.nameTerminalSelect select {
+    width: 400px;
+    background-color: white;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+._registrosTerminal {
+    display: grid;
+    margin-top: 15px;
+    grid-template-columns:  repeat( 3 , 1fr ) ;
+    gap: 10px;
+    width: 95%;
+    text-align: center;
+}
+
+._registrosTerminal hr {
+    margin: 10px 0;
+}
+
+
+._registrosTerminal h5 {
+    font-size: 13px;
+}
+
+._registrosTerminal p {
+    margin: 0;
+    font-size: 14px;
+    color: rgb(66, 66, 66);
+    font-weight: 400 !important;
+}
+
+._registrosTerminal > div {
+    background-color: white;
+    min-width: 300px;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+._registrosTerminal h6 {
+    margin: 0;
+}
+
+._registrosTerminal label {
+    color: var(--negro);
+    font-size: var(--fontSize);
+    margin : 0;
+}
+
+
+.listaDestinosCooperativaBox {
+}
+
+.listaDestinosCooperativaBox table{
+    width: 100%;
+}
+
+.listaDestinosCooperativaBox p{
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+
+.listaDestinosCooperativa::-webkit-scrollbar {
+    height: 5px;    /* Tamaño del scroll en horizontal */
+}
+
+.listaDestinosCooperativa::-webkit-scrollbar-thumb {
+    background: rgb(124, 124, 124);
+    border-radius: 4px;
+}
+
+
+

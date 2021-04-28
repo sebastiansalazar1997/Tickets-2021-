@@ -124,7 +124,21 @@ getDestinos = async( id ) => {
     }
     
   }
+  
+  /* =============================================================================== */
+  /* ==========================REGISTROS ADMINISTRADOR============================== */
+  /* =============================================================================== */
 
+  registrarTerminal = async( terminal ) => {
+    try{
+      let textoTerminal = "INSERT INTO terminal( id_terminal , nombre ) values( nextval('secuencia_pk_terminal'),  $1   )"
+      let datos = [ terminal ]
+      let guardarTerminal = await pool.query( textoTerminal , datos );
+      return guardarTerminal.rows
+    }catch(e){
+      console.log(e);
+    }
+  } 
 
 module.exports = {
     regitrarFormulario,
@@ -133,5 +147,6 @@ module.exports = {
     getCooperativas,
     getDestinos,
     getHorarios,
-    getBuses
+    getBuses,
+    registrarTerminal
 }
