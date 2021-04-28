@@ -38,10 +38,11 @@ body {
 ._registrosTerminal {
     display: grid;
     margin-top: 15px;
-    grid-template-columns:  repeat( 3 , 1fr ) ;
+    grid-template-columns:  repeat( auto-fit , minmax( min-content , 700px )) ;
+    justify-content: center;
     gap: 10px;
     width: 95%;
-    text-align: center;
+    /* text-align: center; */
 }
 
 ._registrosTerminal hr {
@@ -51,9 +52,11 @@ body {
 
 ._registrosTerminal h5 {
     font-size: 13px;
+    text-align: center;
 }
 
 ._registrosTerminal p {
+    text-align: center;
     margin: 0;
     font-size: 14px;
     color: rgb(66, 66, 66);
@@ -64,26 +67,84 @@ body {
     background-color: white;
     min-width: 300px;
     border-radius: 5px;
-    padding: 15px;
+    padding: 10px;
 }
 
 ._registrosTerminal h6 {
+    text-align: center;
     margin: 0;
 }
 
 ._registrosTerminal label {
     color: var(--negro);
     font-size: var(--fontSize);
-    margin : 0;
 }
 
 
-.listaDestinosCooperativaBox {
+
+.nombreCooperativaDestino::before {
+    position: relative;
+    content: "Cooperativa";
+    font-size: 13px;
+    color: var(--negro);
+    left: 0 !important;
+    text-align: center !important;
 }
 
-.listaDestinosCooperativaBox table{
+.nombreCooperativaDestino span{
+    display: inline-block;
+    font-size: 13px;
+    padding: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.edit {
+    background-color: orange;
+}
+
+.hidden {
+    background-color: rgb(187, 187, 187);
+}
+
+.delete {
+    background-color: rgb(253, 147, 147);
+}
+
+.editItem {
+    background-color: rgb(255, 216, 145);
+    font-size: 11px !important;
+}
+
+.deleteItem {
+    background-color: rgb(255, 202, 202);
+    font-size: 11px !important;
+}
+
+.hiddenItem {
+    background-color: rgb(219, 219, 219);
+    font-size: 11px !important;
+}
+
+
+
+.listaDestinosCooperativaBox table {
     width: 100%;
+    text-align: center;
+    /* border: 1px solid blueviolet; */
 }
+
+
+.listaDestinosCooperativaBox tr{
+    border-bottom: 1px solid rgb(207, 207, 207);
+}
+
+.listaDestinosCooperativaBox td{
+    padding: 5px 0;
+}
+
+
 
 .listaDestinosCooperativaBox p{
     font-size: 13px;
