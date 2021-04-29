@@ -2,7 +2,7 @@ const express = require('express');
 const app = express()
 const path = require('path'); 
 const Router = express.Router()
-const { registrarReserva , getTerminales , getCooperativas , getDestinos , getBuses , getHorarios } = require("../database")
+const { registrarDetalle_reserva , registrarCliente , registrarReserva , getTerminales , getCooperativas , getDestinos , getBuses , getHorarios } = require("../database")
 const nodemailer = require( "../mailer" );
 
 app.set('views', path.resolve(__dirname, '../public/views'));
@@ -51,8 +51,7 @@ app.post( "/" , ( req , res ) => {
 
     
     
-  const { terminalReserva , cooperativaReserva , destinoReserva , horaReserva , fechaReserva  , adultosReserva , niniosReserva , nombreReserva , apellidoReserva , cedulaReserva , emailReserva } = req.body;
-
+  const { terminalReserva , cooperativaReserva , destinoReserva , horaReserva , fechaReserva  , asientosAdultos , id_bus , asientosNinios , nombreReserva , apellidoReserva , cedulaReserva , emailReserva } = req.body;
   if ( nombreReserva && apellidoReserva && cedulaReserva , emailReserva  ) {
    let nombreok = /^\w{3,15}\s?(\w{3,15})?$/.test( nombreReserva );
    let apellidook =/^\w{3,15}\s?(\w{3,15})?$/.test( apellidoReserva  );
@@ -60,29 +59,68 @@ app.post( "/" , ( req , res ) => {
    let cedulaok = /^[0-9]{10}$/.test( cedulaReserva )
   //  let adultosok = /^[1-9]{1,9}$/.test( adultosReserva );
   //  let niniosok = /^[1-9]{1,9}$/.test( niniosReserva );
-   let id_reserva = Math.floor(Math.random() * 5000  )
-   
-   console.log( nombreok , apellidook , emailOk , cedulaok );
+   let id_reserva = Math.floor(Math.random() * 5000  );
+
+  //  console.log( nombreok , apellidook , emailOk , cedulaok );
   
     let newDatosReserva = {
+      id : id_reserva,
+      asientosAdultos,
+      asientosNinios,
       terminalReserva,
       cooperativaReserva,
       destinoReserva,
       horaReserva,
-      fechaReserva
+      fechaReserva,
+      id_bus,
+      estado : true
     }
     
     let newDatosUserReserva = {
+      cedulaReserva,
       nombreReserva,
       apellidoReserva,
-      cedulaReserva,
       emailReserva
     }
-  //  console.log( req.body );
+
+
     
     if (nombreok , apellidook , emailOk , cedulaok){
 
-      res.send("Ok");
+      registrarReserva( newDatosReserva );
+      registrarCliente( newDatosUserReserva );
+      registrarDetalle_reserva( id_reserva , cedulaReserva )
+      
+      res.send(
+        `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+      </head>
+      <body style="background-color: rgb(15,15,15);">
+          <img style="position : absolute ; top : 2% ; left : 1%;" width="50" src="../IMG/icono.png" alt="">
+          <h1 style="text-align:center; color : white; margin-top : 50px">Datos guardados</h1>
+          <div style="margin: auto; padding: 10px; text-align:center; color : white">
+          <h6>Datos de la reserva</h6>
+          <p style=" display : inline-block; margin-right : 15px;">Nombres: ${ nombreReserva }  ${ apellidoReserva }</p>
+          <p style=" display : inline-block; margin-right : 15px;">Fecha: ${ fechaReserva }</p>
+          <p style=" display : inline-block; margin-right : 15px;">Hora: ${ horaReserva }</p>
+          <p style=" display : inline-block; margin-right : 15px;">Cooperativa: ${ cooperativaReserva }</p>
+          <p style=" display : inline-block; margin-right : 15px;">Destino: ${ destinoReserva }</p>
+          <p style=" display : inline-block; margin-right : 15px;">Hora: ${ horaReserva }</p>
+          <p style=" display : inline-block; margin-right : 15px;">Unidad. ${ id_bus }</p>
+          <a href="/" align="center" style="margin : auto; display : block; width : 100px; padding : 5px 10px ; border-radius : 5px ; color : black ; background-color : white ; cursor-pointer : none;">Regresar</a>
+          </div>
+      </body>
+      </html>
+        `
+        
+      )
       nodemailer( { email : newDatosUserReserva.emailReserva , terminal: newDatosReserva.terminalReserva  , fecha : newDatosReserva.fechaReserva , hora : newDatosReserva.horaReserva , names : newDatosUserReserva.nombreReserva + " " + newDatosUserReserva.nombreReserva , bus : "Completar" , asientos : "Completar" , destino : newDatosReserva.destinoReserva } )
       //Guardar en DB
       

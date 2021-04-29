@@ -17,45 +17,52 @@ let regitrarFormulario = async ( data ) => {
 
 
 //  vamos a enviar los datos a la base de datos
+let registrarCliente = async ( cliente ) => {
+  console.log( cliente );
+  let texto = "INSERT INTO cliente( cedula , nombre , apellido, correo ) VALUES( $1 , $2 , $3, $4)";
+
+  let datos = [ 
+    cliente.cedulaReserva, 
+    cliente.nombreReserva, 
+    cliente.apellidoReserva, 
+    cliente.emailReserva, 
+  ]
+
+  let newCliente = await pool.query( texto , datos )
+  console.log( newCliente.rows );
+};
+
+
 
 let registrarReserva = async ( persona ) => {
-    let texto = "INSERT INTO cliente( cedula , nombre , apellido, correo ) VALUES( $1 , $2 , $3, $4)";
-    let textoReserva = "INSERT INTO reserva( fecha , estado , id_bus , nro_niños , nro_adultos , id_destino , lugar_salida , hora ) VALUES( $1 , $2 , $3, $4 , $5 , $6 , $7 , $8)";
-    let detalle_reserva = "INSERT INTO detalle_reserva( id_reserva , id_asiento , cedula_cliente )values ( $1 , $2 , $3 ) "
-
-    let texto_detalle_reserva = [  "id_reserva?" , "asiento" , datos.cedula   ]
-    
-    let datos = [ 
-      persona.cedula, 
-      persona.nombre, 
-      persona.apellido, 
-      persona.email, 
-    ]
-     
-    let bus = 1;
-    let destino = 1;
-    let estado = true;
-    
-    console.log(persona.tiempo);
+  console.log( persona , "aui" );
+    let textoReserva = "INSERT INTO reserva( id , fecha , estado , nro_niños , nro_adultos , id_bus , id_destino , lugar_salida , hora ) VALUES( $1 , $2 , $3, $4 , $5 , $6 , $7 , $8 , $9 )";
+    // let detalle_reserva = "INSERT INTO detalle_reserva( id_reserva , id_asiento , cedula_cliente )values ( $1 , $2 , $3 ) "
     
     let datosReserva = [
-      persona.fecha,
-      estado,
-      bus,
-      persona.ninios, 
-      persona.adultos, 
-      destino,
-      persona.salida,
-      persona.tiempo,
-      // persona.cooperativa, 
-      // persona.llegada, 
+      persona.id,
+      persona.fechaReserva,
+      persona.estado,
+      persona.asientosNinios, 
+      persona.asientosAdultos, 
+      persona.id_bus,
+      persona.destinoReserva,
+      persona.cooperativaReserva,
+      persona.horaReserva,
     ]
 
 
-    let guardarDos = await pool.query( textoReserva , datosReserva )
-    let guardar = await pool.query( texto , datos )
-    console.log(guardar.rows);
+    let guardarDatosReserva = await pool.query( textoReserva , datosReserva )
+    console.log(guardarDatosReserva.rows);
 };
+
+
+registrarDetalle_reserva = async( id_reserva , cedula_cliente ) => {
+  console.log( id_reserva , cedula_cliente );
+  let textoDetalle_reserva = 'insert into detalle_reserva(id_reserva ,  cedula_cliente) values( $1 , $2 );'
+  let datos = [ id_reserva , cedula_cliente ]
+  let regitrarDetalle_reserva = pool.query( textoDetalle_reserva , datos )
+}
 
 getTerminales = async() => {
   try{
@@ -124,6 +131,8 @@ getDestinos = async( id ) => {
     }
     
   }
+
+  
   
   /* =============================================================================== */
   /* ==========================REGISTROS ADMINISTRADOR============================== */
@@ -148,5 +157,8 @@ module.exports = {
     getDestinos,
     getHorarios,
     getBuses,
-    registrarTerminal
+    registrarTerminal,
+    registrarCliente,
+    registrarDetalle_reserva
+    
 }

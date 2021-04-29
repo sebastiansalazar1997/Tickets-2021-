@@ -31,6 +31,7 @@
 
 @media print {
 	*,
+	
 	*::before,
 	*::after {
 		text-shadow: none !important;

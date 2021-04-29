@@ -168,7 +168,8 @@
       <form method="POST" name="reservaAsientoForm">
         <div class="_formGrid">
 
-         
+         <input type="text" id="id_asietosAdultos" name="asientosAdultos" hidden>
+         <input type="text" id="id_asietosNinios" name="asientosNinios" hidden>
 
           <div class="__busContainerMain" id="busContainer">
             
@@ -221,7 +222,7 @@
                 
                   <span class="material-icons foco-izq">incomplete_circle</span>
                   <span class="material-icons foco-der">incomplete_circle</span>
-
+                  <input type="text" name="id_bus" id="id_busReserva" hidden>
                 <div class="asientos-der">
                   <!-- <div>V1</div>
                   <div>V1</div>
@@ -375,7 +376,7 @@
           <input name="TEST" value="false" hidden>
 
           <div class="btn_Reservar">
-            <button type="submit" >Reservar</button>
+            <button type="submit" id="registrarReserva" >Reservar</button>
           </div>
 
 

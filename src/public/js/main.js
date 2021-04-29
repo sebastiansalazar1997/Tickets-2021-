@@ -14,6 +14,11 @@ let $niniosAdulto = document.querySelector(".niniosAdulto");
 let $numeroTotal = document.querySelector(".numeroTotal");
 let $precioPorAsiento = document.querySelector(".precioPorAsiento");
 let $valorTotal = document.querySelector(".valorTotal");
+let $id_asietosAdultos = document.querySelector("#id_asietosAdultos");
+let $id_asietosNinios = document.querySelector("#id_asietosNinios");
+let $id_busReserva = document.querySelector("#id_busReserva");
+let $registrarReserva = document.querySelector("#registrarReserva");
+
 
 
 let asientosArrayOcupados = []
@@ -113,6 +118,7 @@ class getSelect {
     };
 
     busAsientos = ( id ) => {
+        $id_busReserva.value = id
         fetch("/" , { method : "POST" ,
         headers : { "Content-type" : "application/json" },
         body : JSON.stringify({ id_bus : id  , TEST : true })
@@ -142,8 +148,9 @@ class getSelect {
         for( let i = 0 ; i < ventana.length ; i++ ){
             $asientos_der.innerHTML += `<div id="${ ventana[i].nombre_asiento }">
             ${ ventana[i].nombre_asiento }
-            <input value="${ ventana[i].nombre_asiento }"  name="asientosSeleccionados" hidden >
             </div>`
+
+            // <input value="${ ventana[i].nombre_asiento }"  name="asientosSeleccionados" hidden >
         }
 
         for( let i = 0 ; i < pasillo.length ; i++ ){
@@ -317,10 +324,10 @@ class Asientos{
         }else{
             if( this.$adultoONinioRadio == 'adultos' ){
                 this.asientosPintar.push( id );
-                console.log( this.asientosPintar );
+                // console.log( this.asientosPintar , "adultos" );
             }else if( this.$adultoONinioRadio == 'ninios' ){
                 this.asientosPintarNinios.push( id );
-                console.log( this.asientosPintarNinios );
+                // console.log( this.asientosPintarNinios , "ninios" );
             }
 
             this.pintarAsientos()
@@ -333,9 +340,9 @@ class Asientos{
         let indice = this.asientosPintar.indexOf( id )
         let indiceNinios = this.asientosPintarNinios.indexOf( id )
         if( indice != -1 ){
-            this.asientosPintar.splice( indice , 1 )
-        }else if(  indiceNinios != -1 ){
-            this.asientosPintarNinios.splice( indiceNinios , 1 )
+            this.asientosPintar.splice( indice , 1 );
+            }else if(  indiceNinios != -1 ){
+            this.asientosPintarNinios.splice( indiceNinios , 1 );
         }
         this.pintarAsientos()
         this.precioPagarDestino()
@@ -343,6 +350,10 @@ class Asientos{
     
     
     pintarAsientos = (  ) =>{
+        console.log( this.asientosPintarNinios , "ninios" );
+        console.log( this.asientosPintar , "adultos" );
+        $id_asietosAdultos.value = this.asientosPintar
+        $id_asietosNinios.value = this.asientosPintarNinios
         for( let i = 0 ; i < this.asientosPintar.length ; i++ ){
             let asiento = document.getElementById(`${ this.asientosPintar[i] }`);
             asiento.setAttribute("style" , `background-color : skyblue`);
@@ -420,6 +431,22 @@ $cooperativa.addEventListener("change" , () => {
 $terminal.addEventListener("change" , () => {
     let getSelectNew = new getSelect();
     getSelectNew.cooperativas( $terminal.value );
+});
+
+let falseTureReserva = () => {
+    fetch("/" , { method : "POST" ,
+    headers : { "Content-type" : "application/json" },
+    body : JSON.stringify({  TEST : false })
+    })
+    .then( res => res.text() )
+    .then( data => {
+        console.log( data );
+    });
+}
+
+
+$registrarReserva.addEventListener("click" , x => {
+    falseTureReserva()
 });
 
 let getSelectNew = new getSelect( asientosArrayOcupados );

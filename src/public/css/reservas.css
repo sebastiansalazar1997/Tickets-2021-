@@ -1,0 +1,60 @@
+body {
+    background-color: rgb(230, 228, 228) !important;
+}
+
+.__registrosContainerMain {
+    margin-top: 25px;
+    width: 96%;
+    /* background-color: burlywood; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.__registrosContainerMain > div{
+    /* background-color: cadetblue; */
+}
+
+._cajaRegistrosMain  {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat( auto-fit , minmax( 300px , 1fr ) );
+    gap: 10px ;
+}
+
+
+._cajaRegistrosMain thead {
+    border-bottom: 1px solid rgb(179, 179, 179);
+    margin: 0;
+}
+
+.relative {
+    position: relative;
+}
+
+.relative span {
+    position: absolute;
+    top : 8px;
+    right: 8px;
+    cursor: pointer;
+}
+
+._cajaRegistrosMain table {
+    text-align: center;
+    width: 100%;
+    /* background-color: violet; */
+}
+
+.deleteItem {
+    background-color: rgb(250, 175, 175);
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px !important;
+}
+
+._cajaRegistrosMain > div {
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+}

@@ -2,7 +2,7 @@ const express = require("express");
 const { join } = require("path");
 const app = express();
 const path = require('path');
-const { registrarTerminal , getTerminales , getCooperativas } = require('../database')
+const { getTerminales , getCooperativas , getDestinos , getHorarios , getDetalle_reserva } = require('../databaseRegistros')
 
 app.get("/admin/login" , ( req , res ) => {
   res.sendFile('loginAdmin.html', {root :  path.join(__dirname , '../public/views')});
@@ -50,13 +50,11 @@ app.post("/admin/admin/terminal" , ( req, res ) => {
 
 app.get("/admin/registros-cooperativas" , ( req , res ) => {
   let token = req.query.token;
+  if( token == 'Pd445fDa54' ){
     res.sendFile('registros.html', {root :  path.join(__dirname , '../public/views')});
-
-  // if( token == 'Pd445fDa54' ){
-  //   res.sendFile('admin.html', {root :  path.join(__dirname , '../public/views')});
-  // }else{
-  //   res.redirect('/admin/login')
-  // }
+  }else{
+    res.redirect('/admin/login')
+  }
 });
 
 app.post("/admin/registros-cooperativas" , ( req , res ) => {
@@ -71,10 +69,43 @@ app.post("/admin/registros-cooperativas" , ( req , res ) => {
     .then( cooperativas => {
       res.send( cooperativas )
     })
+  }else if( req.body.id_cooperativa ){
+    getDestinos( req.body.id_cooperativa )
+    .then( destinos => {
+      res.send( destinos )
+    })
+  }else if( req.body.id_destino ){
+    getHorarios( req.body.id_destino )
+    .then( horarios => {
+      res.send( horarios )
+    })
   }
   
 })
 
+
+app.get("/admin/registros-reservas" , ( req , res ) => {
+  //admin/registros-reservas?token=Pd445fDa54
+  let token = req.query.token;
+  if( token == 'Pd445fDa54' ){
+    res.sendFile('reservas.html', {root :  path.join(__dirname , '../public/views')});
+  }else{
+    res.redirect('/admin/login')
+  }
+});
+
+
+app.post("/admin/registros-reservas" , ( req , res ) => {
+  //admin/registros-reservas?token=Pd445fDa54
+
+  if( req.body.detalle_reserva ){
+    getDetalle_reserva()
+    .then( detalle_reserva => {
+      res.send( detalle_reserva )
+    })
+  }
+  
+});
 
 
 module.exports = app;
