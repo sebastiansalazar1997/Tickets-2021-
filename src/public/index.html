@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/reservaContenainer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
   <!--[if lt IE 10]>
@@ -370,10 +371,51 @@
                 <label for="emailReserva">Email</label>
                 <input name="emailReserva" type="text" id="emailReserva">
               </div>
+
+              <div class="meotodPago">
+                <div>
+                  <p>
+                    Metodo de pago
+                    <i class="address card outline icon"></i>
+                  </p>
+                </div>
+              </div>
             
           </div>
 
           <input name="TEST" value="false" hidden>
+
+          <style>
+            .meotodPago {
+              display: flex;
+              justify-content: center;
+              grid-column: span 2;
+              cursor: pointer;
+            }
+
+            .meotodPago > div {
+              display: flex;
+              background: rgb(255, 27, 65);
+              color: white;
+              border-radius: 4px;
+              margin: 10px 10px;
+              padding:  5px 10px;
+            }
+
+            .meotodPago p{
+              margin: 0;
+            }
+
+            
+
+            .meotodPago input[type="radio"] {
+              display: block !important;
+              width: auto;
+            }
+            
+          </style>
+
+          
 
           <div class="btn_Reservar">
             <button type="submit" id="registrarReserva" >Reservar</button>

@@ -106,22 +106,24 @@ app.post( "/" , ( req , res ) => {
           <img style="position : absolute ; top : 2% ; left : 1%;" width="50" src="../IMG/icono.png" alt="">
           <h1 style="text-align:center; color : white; margin-top : 50px">Datos guardados</h1>
           <div style="margin: auto; padding: 10px; text-align:center; color : white">
-          <h6>Datos de la reserva</h6>
-          <p style=" display : inline-block; margin-right : 15px;">Nombres: ${ nombreReserva }  ${ apellidoReserva }</p>
-          <p style=" display : inline-block; margin-right : 15px;">Fecha: ${ fechaReserva }</p>
-          <p style=" display : inline-block; margin-right : 15px;">Hora: ${ horaReserva }</p>
-          <p style=" display : inline-block; margin-right : 15px;">Cooperativa: ${ cooperativaReserva }</p>
-          <p style=" display : inline-block; margin-right : 15px;">Destino: ${ destinoReserva }</p>
-          <p style=" display : inline-block; margin-right : 15px;">Hora: ${ horaReserva }</p>
-          <p style=" display : inline-block; margin-right : 15px;">Unidad. ${ id_bus }</p>
-          <a href="/" align="center" style="margin : auto; display : block; width : 100px; padding : 5px 10px ; border-radius : 5px ; color : black ; background-color : white ; cursor-pointer : none;">Regresar</a>
+            <h6>Datos de la reserva</h6>
+            <p style=" display : inline-block; margin-right : 15px;">Nombres: ${ nombreReserva }  ${ apellidoReserva }</p>
+            <p style=" display : inline-block; margin-right : 15px;">Fecha: ${ fechaReserva }</p>
+            <p style=" display : inline-block; margin-right : 15px;">Hora: ${ horaReserva }</p>
+            <p style=" display : inline-block; margin-right : 15px;">Cooperativa: ${ cooperativaReserva }</p>
+            <p style=" display : inline-block; margin-right : 15px;">Destino: ${ destinoReserva }</p>
+            <p style=" display : inline-block; margin-right : 15px;">Hora: ${ horaReserva }</p>
+            <p style=" display : inline-block; margin-right : 15px;">Unidad. ${ id_bus }</p>
+            <p style=" display : inline-block; margin-right : 15px;">Asientos Adulto. ${ asientosAdultos }</p>
+            <p style=" display : inline-block; margin-right : 15px;">Asientos Niños. ${ asientosNinios }</p>
+            <a href="/" align="center" style="margin : auto; display : block; width : 100px; padding : 5px 10px ; border-radius : 5px ; color : black ; background-color : white ; cursor-pointer : none;">Regresar</a>
           </div>
       </body>
       </html>
         `
         
       )
-      nodemailer( { email : newDatosUserReserva.emailReserva , terminal: newDatosReserva.terminalReserva  , fecha : newDatosReserva.fechaReserva , hora : newDatosReserva.horaReserva , names : newDatosUserReserva.nombreReserva + " " + newDatosUserReserva.nombreReserva , bus : "Completar" , asientos : "Completar" , destino : newDatosReserva.destinoReserva } )
+      nodemailer( { email : newDatosUserReserva.emailReserva , terminal: newDatosReserva.terminalReserva  , fecha : newDatosReserva.fechaReserva , hora : newDatosReserva.horaReserva , names : newDatosUserReserva.nombreReserva + " " + newDatosUserReserva.apellidoReserva , bus : id_bus , asientos : asientosAdultos , destino : newDatosReserva.destinoReserva } )
       //Guardar en DB
       
     }
