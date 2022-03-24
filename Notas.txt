@@ -1,0 +1,142 @@
+                                    ----- GIT BASH ------
+pwd --> nos muestra el path o ruta de la carpeta en donde nos encontramos ubicados
+cd -->  me permite acceder (entrar) a una carpeta en un nivel o varios niveles
+cd .. --> me permite salir de una carpeta en un nivel o varios niveles OJO los dos puntos deben ser separados por un espacio del comando cd
+ls --> me muestra los archivos que contiene una carpeta, puede ser la ubicación actual o una ruta especifica, no muestra los archivos ocultos
+ls -a --> me muestra los archivos que contiene una carpeta, puede ser la ubicación actual o una ruta especifica, incluyendo los archivos ocultos
+ls -l --> me lista los archivos que contiene una carpeta con sus atributos, puede ser la ubicación actual o una ruta especifica, no muestra los archivos ocultos
+ls -al -->me lista los archivos que contiene una carpeta con sus atributos, puede ser la ubicación actual o una ruta especifica, incluyendo los archivos ocultos
+clear --> limpiar la consola o terminal, o un shorcut crtl + L
+mkdir <nombre carpeta> --> nos permite crear una carpeta
+touch <nombre del archivo> --> nos permite crear un archivo
+cat <nombre del archivo> --> me permite visualizar el contenido del un archivo y lo muestra en el terminal
+history --> nos muestra un historial de los comandos que hemos utilizado
+rm <nombre del archivo> me permite borrar un archivo
+ctrl + l --> limpia la linea de comando
+
+
+                                        ------GIT---------
+git init: lo usamos para determinar la carpeta en la que vamos a trabajar. (carpeta MASTER)
+git status: lo usamos para saber si tenemos un archivo añadido o borrado en nuestro proyecto, para saber en la rama en la que estamos y si tenemos commits.
+git add: es para añadir un archivo a nuestra rama seguidamente ponemos entre comillas el nombre de nuestro archivo o poner un punto para añadir todos los archios de nuestra carpeta.
+git rm: lo usamos para borrar un archivo que hayamos añadido, para eliminarlo por completo de nuestra rama usamosgit rm --cached.
+git commit : se usa para añadir un commit a nuestra rama, también podemos ponerle un -m seguidamente ponemos entre comillas nuestro ensaje.
+git config -l: muestra configuraciones de git también podemos usar –list para mostrar la configuración por defecto de nuestro git y si añadimos --show-origin inhales nos muestra las configuraciones guardadas y su ubicación.
+git config --global user.name "-------" cambia de manera global el nombre del usuario, seguidamente ponemos entre comillas nuestro nombre.
+git config --global user.email "------"  cambia de manera global el email del usuario, seguidamente ponemos entre comillas nuestro nombre.
+git log: se usa para ver la historia de nuestros archivos, los commits, el usuario que lo cambió, cuando se realizaron los cambios etc. seguidamente ponemos el nombre de nuestro archivo
+git log --stat : nos muestras cambios especificos en cada commit.
+git show : muestra cambios en el ULTIMO COMMIT con el anterior.
+git --list : Te muestra una lista de las configuraciones en el git de la maquina.
+rm -rf .git --> Eliminar el INIT en una carpeta y deja de ser MASTER.
+git reset ------nombre del commit------ --hard : hace que recupere un archivo en especifico en el tiempo y borra todo lo creado despues de ese archivo.
+git diff :  muestran cambios entre una el directorio y el stagging
+git cheackout ---nombre de commit--- [nombre del archivo]: nos deja ver el en directo un archivo en concreto
+git checkout MASTER [nombre del archivo]: vuelves al archivo del commit MASTER.
+
+Si se hace un git checkout ---commit--- : causas un cambio de cabecera, para regresar se usa git checkout master.
+
+esc + shit + z + z -->  sale del editor de GIT BACH.
+APLASTAR ''Q'' PARA SALIR.
+
+git rm --cached: Elimina los archivos del área de Staging y del próximo commit pero los mantiene
+                 en nuestro disco duro.
+git rm --force: Elimina los archivos de Git y del disco duro. Git siempre guarda todo, por lo que
+                podemos acceder al registro de la existencia de los archivos, de modo que podremos
+                recuperarlos si es necesario (pero debemos usar comandos más avanzados).
+git reset --soft: Borramos todo el historial y los registros de Git pero guardamos los cambios que
+                tengamos en Staging, así podemos aplicar las últimas actualizaciones a un nuevo commit.
+git reset --hard: Borra todo. Todo todito, absolutamente todo. Toda la información de los commits y del
+                  área de staging se borra del historial.
+git reset HEAD: Este es el comando para sacar archivos del área de Staging. No para borrarlos ni nada de eso,
+                solo para que los últimos cambios de estos archivos no se envíen al último commit,
+                a menos que cambiemos de opinión y los incluyamos de nuevo en staging con git add,
+                por supuesto.
+
+git commit -am "---" =  hace un add y el commit directamente.
+git commit --amend --> nos ayuda a corregir el ultimo commit que ya se hizo SOLO SE PUEDE HACER SI SE HIZO PREVIAMENTE UN git add
+git branch [nombre] --  Crea una rama nueva como una copia desde el master actual.
+git branch -- nos muestra las ramas existentes y en cual estas.
+git branch -D [nombre de rama] = Elemina una rama definitivamente.
+
+
+git remote add [nombre] [direccion de https] - comando para agregar el repositorio remoto ORIGIN = github del proyecto; UPSTRING = Colaboraciones externas (codigo abierto).
+git remote - muestra los espacios para remotos que existen
+git remote -v  :  muestra las direcciones para push y fetch de los remotos
+
+git push [nombre] [rama] - subes todos los datos a esa direccion en esa rama.
+git push origin --delete [rama] = eliminar una rama directamente de github.
+git pull [nombre] [rama] --allow-unrelated-histories   :  Fucionar ramas de la nube y el local, referente a la estructura de github.
+git branch -M main --> cambio de la rama master a main.
+git merge [rama] => se fuciona con la rama en la que te encuentras la rama que estas llamando.
+
+----TRANSMISION DE DATOS POR SSH-------
+ssh-keygen -t rsa -b 4096 -C "email" = ssh-kegen codigo que genera la llave privada y publica en la computadora
+                                        -t [nombre de codificacion] = nombre de codificacion de esas llave privada y publica.
+                                        -b [numero] = a la complegidad algoritmica de las llaves
+                                        -C [mail] = mail al que va a estar asociado la llave.
+eval $(ssh-agent -s) = nos muestra si esta activa el agente que revisa las llaves publicas y privadas.
+ssh-add [ ~/.ssh/id_rsa][direccion de la llave privada] : agrega la llave y lo relaciona con el correo electronico.
+
+git remote set-url [nombre] [nueva direccion] : para cambiar la direccion a donde apunta.
+
+git  log --all --graph --decorate --oneline = nos muestra el historico de los commists  de forma mas grafica.
+alias [nombre]="[comando]"  => nos deja renombrar un comando muy largo para llamarlo de manera simple
+
+git tag -a [nombre "comun v0.1"] -m "mensaje" [hash del commit] => nos deja agregar tags en los versionamientos.
+git tag => nos muestra los tags que existen.
+git show-ref --tags => nos muestas los tags y a que hash esta linkeado.
+git push origin --tags  => para mandar los tags a la nube visible en github
+git tag -d [nombre del tag] => mata el tag que se desea.
+git push origin :refs/tags/[nombre del tag] => nos permite eliminar los tags de github.
+
+-------------------------git stash---------------------------
+git stash -> nos crea un guardado en la memoria a cual podemos acceder despues o borrarlo UTIL EN TRABAJOS GRANDES
+git stash save "MANSAJE" -> Grabas un stash conun mensaje para diferenciarlo.
+git stash pop -> sacar datos del git stash (temporales) a una rama el de la posision [0]
+git stash pop stash@{<num_stash>} -> en caso de tener mas de un stash puedes escoger cual sacar a la rama. Tomar datos de list
+git stash list -> Lista todos los git stash.
+git stash drop -> Elimina el stash mas reciente elemento 0.
+git stash clear -> Elemina todos los stash en la memoria.
+git stash branch <nombre> = Crea una rama con la informacion guardad en el stash.
+
+git clean -f --> borra los archivos detectados por git como nuevos en el proyecto.
+git clean --dry-run --> muestra los archivos que van a ser borrados por git clean -f cuando corra.
+
+git cherry-pick [numero de commit] --> nos permite fusionar una rama con un commit cualquiera. ES UNA MALA PRACTICA CUIDADO.
+
+
+------GIT HUB ---------
+PUSH REQUEST--> opcion ,subir cambios o para fucionar dos ramas dentro de github con la posibilidad de agregar colaboradores.
+FORK --> Crea un repositorio paralelo de un repositorio publigo dentro de github.
+
+----------REBASE------------
+git rebase [rama] = Se usa para fuciionar las historias de dos ramas, para fingir que no existio una, MALA PRACTICA
+                    USARLA CON CUIDADO.
+                    --PRIMERO usarla en la rama alterna.
+                    --SEGUNDO usarla en la rama MAIN.
+                    --EN CASO DE ERROR USAR reset.
+
+------USOS DE EMERGENCIA--------
+git reflog -- Nos da la informacion referente a TODOS LOS COMMITS DEL PROYECTO... SIN EXEPCION!!
+git reset --hard => usar los datos del git reflog una vez encuentres que se daño y donde (--soft poco usado).
+
+------COMANDOS PARA BUSQUEDA------
+        GREP = archivos.
+        LOG = commits.
+git grep "texto" -> Se usa para buscar dentro de un proyecto, la palabra que ponemos a continuacion de grep
+                    si lo que se necesita es una etiqueta o frase poner entre comiilas "texto"
+git grep -n "palabra" --> indica en que lineas y archivos se uso esa palabra.
+git grep -c "palabra" --> cuantas veces use esa palabra.
+git log -S "palabra" --> las veces que use esa palabra en commits o tiene relacion a la palabra.
+
+------ COMANDOS COLABORATIVOS Y COMUNES -----
+git shortlog --> todos los comandos hechos por cada persona (desordenado)
+git shortlog -sn --> el numeor de commits que ha hecho cada miembro del equipo.
+git shortlog -sn --all => Muestra todos los commits hasta los borrados.
+git shortlog -sn --all --no-merges => Excluye a los merges de todos los comandos.
+git config --global alias.[NOMBRE] "[COMANDO]" => Crea un comando corto unicamente para git.
+git blame [archivo] -c => Quien hizo que cambios con identado.
+git blame [archivo o direccion] -L[linea 1],[linea 2] => Nos indica quien hizo los cambios en un rango especifico de lineas.
+git branch -r => branches remotas.
+git branch -a => Todas las branchs locales y remotas.
